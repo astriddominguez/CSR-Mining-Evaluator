@@ -1,0 +1,9 @@
+<div class="p-3 mb-3 rounded card-info-panel">
+  <p class="text-muted fs-5 text-justify">
+    {% for subsection, class in panel_msg.items %}
+    <span class="{{ class }}">●</span>
+    Camps necessaris per calcular: <strong>{{ subsection }}</strong>.
+    <br>
+    {% endfor %}
+  </p>
+</div>

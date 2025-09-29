@@ -1,0 +1,24 @@
+[
+    {
+        "question": "Com s'anomena el projecte?",
+        "required": true,
+        "type": "text_input",
+        "input_id": "project_name",
+        "placeholder": "Exemple: Mines de Súria"
+    },
+    {
+        "question": "Quina empresa minera el gestiona?",
+        "required": true,
+        "type": "text_input",
+        "input_id": "company_name",
+        "placeholder": "Exemple: ICL Iberia"
+    },
+    {
+        "question": "En quina fase es troba?",
+        "required": true, 
+        "type": "select", 
+        "input_id": "phase",
+        "placeholder": "Selecciona una fase",
+        "options": ["Exploració", "Construcció", "Operació", "Tancament"]
+    }
+]

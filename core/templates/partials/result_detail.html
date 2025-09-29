@@ -1,0 +1,120 @@
+<div class="card mb-4 border-0">
+  <div class="card-body">
+    <button class="fw-bold btn btn-dark btn-lg mt-3 shadow ps-4 pe-4 w-100 btn-responsive" id="{{ see_more_button_id }}">
+      Veure informació detallada
+    </button>
+
+    <div id="{{ detail_info_id }}" class="mt-3" style="display: none;">
+      <ul class="detail-container" class="list-group">
+        {% for key, data in detail.items %}
+        <li class="list-group-item border-top pt-3 mt-4">
+          <h3 class="fw-bold p-2">
+            {{ forloop.counter }}. {{ data.name }}
+
+            <span class="badge bg-csr rounded-pill mx-2 fs-5">{{ data.rating_total }}</span>
+
+          </h3>
+
+          <div class="px-3 pb-3">
+            {{ data.summary | safe}}
+
+            {{ data.messages  | safe }}
+
+            {{ data.list | safe }}
+
+            {% if data.advice %}
+            {% if data.semaphore == "RED" %}
+            <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-light-red">
+              <strong>Consell:</strong> {{ data.advice }}
+            </div>
+            {% elif data.semaphore == "DRED" %}
+            <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-red">
+              <strong>Consell:</strong> {{ data.advice }}
+            </div>
+            {% elif data.semaphore == "GREEN" %}
+            <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-light-green">
+              <strong>Consell:</strong> {{ data.advice }}
+            </div>
+            {% elif data.semaphore == "DGREEN" %}
+            <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-green">
+              <strong>Consell:</strong> {{ data.advice }}
+            </div>
+            {% elif data.semaphore == "YELLOW" %}
+            <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-yellow">
+              <strong>Consell:</strong> {{ data.advice }}
+            </div>
+            {% elif data.semaphore == "ORANGE" %}
+            <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-orange">
+              <strong>Consell:</strong> {{ data.advice }}
+            </div>
+            {% endif %}
+            {% endif %}
+
+          </div>
+          <div class="row px-3 pb-3">
+            {% for data2 in data.subsection_results.0.values %}
+            {% for result in data2.values %}
+            <div class="col-md-6 col-sm-12">
+              <div class="card p-3 card-detail-info mb-3">
+                <div class="card-body position-relative">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h4 class="fw-semibold mb-0">{{ result.name }}</h4>
+                    {% if result.semaphore == "DRED" %}
+                    <span class="badge rounded-pill red fs-5">{{ result.rating }}/{{ result.out_of }}</span>
+                    {% elif result.semaphore == "RED" %}
+                    <span class="badge rounded-pill light-red fs-5">{{ result.rating }}/{{ result.out_of }}</span>
+                    {% elif result.semaphore == "ORANGE" %}
+                    <span class="badge rounded-pill orange fs-5">{{ result.rating }}/{{ result.out_of }}</span>
+                    {% elif result.semaphore == "YELLOW" %}
+                    <span class="badge rounded-pill yellow fs-5">{{ result.rating }}/{{ result.out_of }}</span>
+                    {% elif result.semaphore == "GREEN" %}
+                    <span class="badge rounded-pill light-green fs-5">{{ result.rating }}/{{ result.out_of }}</span>
+                    {% elif result.semaphore == "DGREEN" %}
+                    <span class="badge rounded-pill green fs-5">{{ result.rating }}/{{ result.out_of }}</span>
+                    {% endif %}
+                  </div>
+
+                  {{ result.sentence | safe }}
+
+                  {{ result.summary | safe }}
+
+                  {% if result.semaphore == "RED" %}
+                  <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-light-red">
+                    <strong>Consell:</strong> {{ result.advice }}
+                  </div>
+                  {% elif result.semaphore == "DRED" %}
+                  <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-red">
+                    <strong>Consell:</strong> {{ result.advice }}
+                  </div>
+                  {% elif result.semaphore == "GREEN" %}
+                  <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-light-green">
+                    <strong>Consell:</strong> {{ result.advice }}
+                  </div>
+                  {% elif result.semaphore == "DGREEN" %}
+                  <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-green">
+                    <strong>Consell:</strong> {{ result.advice }}
+                  </div>
+                  {% elif result.semaphore == "YELLOW" %}
+                  <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-yellow">
+                    <strong>Consell:</strong> {{ result.advice }}
+                  </div>
+                  {% elif result.semaphore == "ORANGE" %}
+                  <div class="p-3 mb-2 rounded-3 fs-5 advice-semaphore-orange">
+                    <strong>Consell:</strong> {{ result.advice }}
+                  </div>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+          </div>
+        </li>
+        {% endfor %}
+
+      </ul>
+    </div>
+
+  </div>
+</div>

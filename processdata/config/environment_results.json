@@ -1,0 +1,327 @@
+{
+    "ghg_reduction": {
+        "name": "Tècniques energètiques eficients",
+        "summaries": {
+            "1": "Gairebé no s’utilitzen tècniques energèticament eficients en l’operació minera.",
+            "2": "S’estan implementant algunes tècniques eficients, però amb abast molt limitat.",
+            "3": "La meitat de les operacions apliquen tècniques per millorar l’eficiència energètica.",
+            "4": "La majoria de processos integren tècniques eficients, tot i que encara hi ha marge.",
+            "5": "S’apliquen tècniques eficients a pràcticament totes les operacions mineres."
+        },
+        "advices": {
+            "1": "Implanta les millors tècniques disponibles per reduir el consum energètic i els costos operatius.",
+            "2": "Amplia l’ús de bones pràctiques a altres etapes del procés productiu.",
+            "3": "Consolida l’eficiència com a estàndard operatiu i planifica actualitzacions tecnològiques.",
+            "4": "Mantén la millora contínua i explora innovacions en eficiència energètica.",
+            "5": "Documenta i comparteix les bones pràctiques com a referent del sector."
+        }
+    },
+    "green_energy_sources": {
+        "name": "Energia renovable instal·lada",
+        "summaries": {
+            "1": "Quasi no s’utilitzen fonts d’energia renovable en les instal·lacions mineres.",
+            "2": "Una part del subministrament energètic prové de fonts renovables, però encara és insuficient.",
+            "3": "La meitat de les instal·lacions ja incorporen energia renovable.",
+            "4": "Alta integració d’energies netes, tot i que encara no és plena.",
+            "5": "La mina funciona gairebé íntegrament amb fonts d’energia renovable."
+        },
+        "advices": {
+            "1": "Inicia la transició cap a l’energia renovable amb petites instal·lacions pilot.",
+            "2": "Explora aliances amb proveïdors locals d’energia verda i incrementa-ne l’ús.",
+            "3": "Consolida l’estratègia renovable i amplia-ne la cobertura.",
+            "4": "Considera la integració completa de renovables i sistemes d’emmagatzematge energètic.",
+            "5": "Mantén la infraestructura i comunica l’excel·lència en sostenibilitat."
+        }
+    },
+    "green_energy_fleet": {
+        "name": "Maquinària electrificada",
+        "summaries": {
+            "1": "La maquinària minera utilitza principalment combustibles fòssils.",
+            "2": "Hi ha un ús inicial de maquinària elèctrica, però encara minoritari.",
+            "3": "Una part significativa de la flota ja funciona amb energia verda.",
+            "4": "La majoria de la maquinària minera ha estat electrificada.",
+            "5": "Pràcticament tota la flota minera funciona amb energia neta."
+        },
+        "advices": {
+            "1": "Planifica el reemplaçament progressiu dels equips per alternatives elèctriques.",
+            "2": "Aposta per projectes pilot amb vehicles elèctrics i analitza resultats.",
+            "3": "Renova la flota seguint criteris d’electrificació i sostenibilitat.",
+            "4": "Implementa sistemes de gestió eficient de la flota per maximitzar l’impacte.",
+            "5": "Converteix la mina en exemple de descarbonització en el sector."
+        }
+    },
+    "price_increase": {
+        "name": "Recuperabilitat dels minerals en els residus de la mina",
+        "summaries": {
+            "1": "Els minerals continguts als tailings només serien viables amb un preu 8–10 vegades superior a l’actual.",
+            "2": "La recuperació seria viable amb un augment de 6–8 vegades el preu del mercat.",
+            "3": "Els tailings podrien esdevenir rendibles amb un increment moderat de 4–6 vegades.",
+            "4": "Hi ha una bona oportunitat de recuperar minerals amb només 2–4 vegades d’increment de preu.",
+            "5": "Els tailings són una font secundària altament viable amb condicions de mercat lleugerament millors."
+        },
+        "advices": {
+            "1": "Considera altres usos per als tailings i descarta inversions costoses en recuperació.",
+            "2": "Monitoritza el mercat i avalua tecnologies emergents de recuperació.",
+            "3": "Prepara estudis de viabilitat per a una futura revalorització dels tailings.",
+            "4": "Dissenya un pla de recuperació progressiu i sostenible.",
+            "5": "Activa la recuperació immediata com a estratègia de valor afegit al projecte."
+        }
+    },
+    "other_tailing_usage": {
+        "name": "Reutilització dels residus com a material de construcció o farciment",
+        "summaries": {
+            "1": "Menys del 10% dels tailings es reutilitzen, cosa que indica desaprofitament de recursos.",
+            "2": "Una petita part dels tailings es destina a usos útils, però el potencial és molt superior.",
+            "3": "La reutilització dels tailings comença a ser significativa.",
+            "4": "Bona part del volum generat té una segona vida útil.",
+            "5": "Es reutilitza més de la meitat dels tailings, reduint l’impacte ambiental."
+        },
+        "advices": {
+            "1": "Analitza les característiques dels tailings per identificar usos industrials viables.",
+            "2": "Estableix aliances amb el sector de la construcció per aprofitar-ne el potencial.",
+            "3": "Millora els processos per augmentar la fracció aprofitable dels residus.",
+            "4": "Consolida els canals de reutilització i amplia la logística associada.",
+            "5": "Documenta i promociona l’enfocament circular com a exemple de bones pràctiques."
+        }
+    },
+    "water_recovery_from_tailings": {
+        "name": "Recuperació d’aigua dels residus de la mina",
+        "summaries": {
+            "1": "Es recupera menys del 20% de l’aigua continguda en els tailings, amb fort impacte hídric.",
+            "2": "Recuperació d’aigua limitada però existent.",
+            "3": "Es comença a aprofitar una part considerable de l’aigua dels tailings.",
+            "4": "Bona part de l’aigua es reutilitza, millorant l’eficiència hídrica.",
+            "5": "S’aprofita més del 80% de l’aigua, minimitzant la petjada hídrica del projecte."
+        },
+        "advices": {
+            "1": "Implanta sistemes de desaguament i tecnologies de filtració per reduir l’aigua atrapada.",
+            "2": "Estudia opcions de recuperació i reinjecció d’aigua al procés.",
+            "3": "Millora la tecnologia de drenatge i reciclatge dins la planta.",
+            "4": "Optimitza els circuits hídrics i implementa sistemes de monitoratge.",
+            "5": "Mantén la gestió hídrica exemplar i explora l’autosuficiència hídrica completa."
+        }
+    },
+    "higher_waste_ratio": {
+        "name": "Excés de generació de residus",
+        "summaries": {
+            "1": "L'increment respecte al valor mitjà és relativament petit, però caldria controlar-lo.",
+            "2": "Increment moderat que reflecteix problemes d’eficiència en l’extracció.",
+            "3": "Generació de residus clarament per sobre del promig; impacte ambiental considerable.",
+            "4": "Excés de residus molt important; la mina presenta pràctiques poc sostenibles.",
+            "5": "Ràtio de residus extremadament alta, reflectint una operació altament ineficient i contaminant."
+        },
+        "advices": {
+            "1": "Identifica punts de millora en l'operació per evitar que la tendència empitjori.",
+            "2": "Analitza els processos de mineria i processament per detectar ineficiències.",
+            "3": "Considera tecnologies de classificació i millora del disseny de mina per reduir residus.",
+            "4": "Actua amb urgència implantant mesures correctores i control de qualitat en l’extracció.",
+            "5": "Redissenya l’estratègia d’explotació minera i opta per solucions tecnològiques de baix residu."
+        }
+    },
+    "lower_waste_ratio": {
+        "name": "Reducció destacada de residus",
+        "summaries": {
+            "1": "Millora poc significativa respecte a la mitjana del sector.",
+            "2": "Reducció moderada de residus, amb tendència positiva.",
+            "3": "Bon nivell de reducció de residus, superior a la mitjana.",
+            "4": "Rendiment notablement eficient en termes de generació de residus.",
+            "5": "Excel·lent gestió i eficiència: la mina genera molt pocs residus comparat amb el sector."
+        },
+        "advices": {
+            "1": "Segueix optimitzant l’operació per aconseguir un impacte més reduït.",
+            "2": "Aprofita la tendència i aposta per innovacions per continuar millorant.",
+            "3": "Mantén i consolida les millores assolides, integrant bones pràctiques de manera permanent.",
+            "4": "Fes difusió dels resultats i promou la formació interna basada en aquest èxit.",
+            "5": "Converteix-te en referent del sector compartint la metodologia i impulsant la seva aplicació en altres projectes."
+        }
+    },
+    "waste_reuse": {
+        "name": "Proporció de residus reutilitzats com a farciment o material de construcció",
+        "summaries": {
+            "1": "Quasi tots els residus són descartats, sense pràcticament cap forma de reutilització.",
+            "2": "Reutilització molt limitada dels residus generats.",
+            "3": "Una part rellevant dels residus s’aprofita, tot i que encara hi ha marge de millora.",
+            "4": "Bona reutilització dels residus amb pràctiques de valorització consolidades.",
+            "5": "Reutilització òptima dels residus, convertint-los en un recurs útil per a altres usos."
+        },
+        "advices": {
+            "1": "Explora opcions per valoritzar residus en forma de farciments, materials de construcció o fertilitzants.",
+            "2": "Implementa projectes pilot per demostrar la viabilitat tècnica i econòmica de la reutilització.",
+            "3": "Estableix col·laboracions amb empreses de construcció o enginyeria per maximitzar la valorització.",
+            "4": "Mantén les bones pràctiques i busca ampliar les aplicacions dels residus valoritzats.",
+            "5": "Dona visibilitat al cas d’èxit i contribueix a la normalització de la reutilització de residus en el sector."
+        }
+    },
+    "water_quality_variation": {
+        "name": "Variació de la qualitat de l'aigua",
+        "summaries": {
+            "1": "La qualitat de l’aigua es manté gairebé intacta respecte a les condicions inicials, indicant una afectació mínima de l’activitat minera.",
+            "2": "L’activitat minera ha generat una variació moderada però gestionable en la qualitat de l’aigua aigües avall.",
+            "3": "Es detecta una afectació significativa en la qualitat de l’aigua, cal prendre mesures per reduir-la.",
+            "4": "L’activitat minera altera de forma considerable la qualitat de l’aigua aigües avall."
+        },
+        "advices": {
+            "1": "Mantingues les pràctiques actuals i implementa sistemes de control per prevenir futures alteracions.",
+            "2": "Millora els sistemes de tractament d’aigües residuals per reduir encara més la càrrega contaminant.",
+            "3": "Revisa processos interns i implanta tecnologies netes per reduir l’emissió de contaminants a l’aigua.",
+            "4": "Estudia alternatives tecnològiques i reforça la vigilància ambiental per reduir l’impacte."
+        }
+    },
+    "water_reuse": {
+        "name": "Reutilització de l’aigua",
+        "summaries": {
+            "1": "La reutilització d’aigua és molt baixa, la qual cosa suposa un desaprofitament dels recursos hídrics disponibles.",
+            "2": "El percentatge de reutilització és encara insuficient i mostra marge de millora.",
+            "3": "Nivell mitjà de reutilització d’aigua, en línia amb pràctiques industrials habituals.",
+            "4": "Bon ús dels recursos hídrics amb una reutilització eficient en el procés miner.",
+            "5": "Reutilització òptima de l’aigua, amb pràctiques molt sostenibles i eficients."
+        },
+        "advices": {
+            "1": "Implanta sistemes de recollida i tractament per a la reutilització interna de l’aigua.",
+            "2": "Millora els sistemes de recuperació i sensibilitza l’equip sobre l’ús eficient de l’aigua.",
+            "3": "Explora tecnologies que permetin augmentar la taxa de reutilització de forma progressiva.",
+            "4": "Documenta les bones pràctiques actuals i busca la seva optimització contínua.",
+            "5": "Comparteix el model amb altres instal·lacions i mantén la inversió en tecnologia de reutilització."
+        }
+    },
+    "waterflow_reduction": {
+        "name": "Reducció del cabal d’aigua",
+        "summaries": {
+            "1": "El cabal natural s’ha reduït dràsticament, afectant potencialment la flora i fauna local.",
+            "2": "La reducció del cabal és elevada i pot comprometre l’equilibri ecològic de la zona.",
+            "3": "Reducció important però dins de marges gestionables per l’ecosistema.",
+            "4": "L’impacte sobre el cabal és menor i indica una bona gestió hídrica.",
+            "5": "El cabal es manté gairebé intacte, indicant una explotació respectuosa amb el medi."
+        },
+        "advices": {
+            "1": "Estudia mesures urgents per reduir l’extracció d’aigua i millorar la recirculació.",
+            "2": "Implanta sistemes d’eficiència hídrica i minimitza les pèrdues en el procés.",
+            "3": "Revisa el balanç hídric i millora la planificació de consums interns.",
+            "4": "Consolida les pràctiques actuals i estudia petits ajustos per optimitzar el rendiment.",
+            "5": "Mantingues les estratègies actuals i promou-les com a exemple de bones pràctiques."
+        }
+    },
+    "waterflow_increment": {
+        "name": "Increment del cabal d’aigua",
+        "summaries": {
+            "1": "L’increment del cabal és extrem i pot provocar danys ecològics com erosió o alteració d’hàbitats naturals.",
+            "2": "L’augment del cabal és elevat i representa una desviació important respecte al règim natural.",
+            "3": "L’increment del cabal és considerable, però l’impacte encara es pot gestionar si es manté estable.",
+            "4": "L’augment és lleu i indica una gestió amb pocs desequilibris respecte al cabal natural.",
+            "5": "El cabal es manté molt proper als valors naturals, sense increments significatius."
+        },
+        "advices": {
+            "1": "Revisa d’on prové l’excés d’aigua i implementa mesures per limitar l’aportació artificial al sistema.",
+            "2": "Analitza les causes de l’increment i aplica ajustos per restablir un cabal més proper al natural.",
+            "3": "Supervisa de forma contínua el cabal i valora actuacions preventives per evitar increments majors.",
+            "4": "Mantingues el seguiment actual i ajusta lleugerament si cal per evitar futurs desequilibris.",
+            "5": "Documenta el model de gestió i utilitza’l com a referència per a altres projectes sostenibles."
+        }
+    },
+    "air_quality": {
+        "summaries": {
+            "1": "La qualitat de l’aire no s’ha vist afectada o fins i tot ha millorat amb el projecte, cosa que demostra una gestió ambiental exemplar.",
+            "2": "L’impacte en la qualitat de l’aire és molt baix i dins de marges acceptables, però es poden fer petits ajustos preventius.",
+            "3": "Hi ha un impacte moderat en la qualitat de l’aire que podria empitjorar si no s’hi actua. Caldria analitzar les fonts d’emissió.",
+            "4": "Impacte elevat en la qualitat de l’aire, proper als límits legals. És prioritari revisar processos i reduir emissions.",
+            "5": "La qualitat de l’aire es deteriora clarament i pot excedir els límits legals. Cal una intervenció immediata."
+        },
+        "advices": {
+            "1": "Mantingues els processos actuals i documenta les bones pràctiques per replicar-les en futurs projectes.",
+            "2": "Implementa millores puntuals en el seguiment i control de les emissions, especialment en situacions de canvi d'activitat.",
+            "3": "Identifica les fonts principals d’emissió i aplica tecnologies més netes o canvis en el procés productiu.",
+            "4": "Actua de forma preventiva amb sistemes de filtratge, tancaments parcials i control més estricte de la flota i instal·lacions.",
+            "5": "Replanteja les operacions crítiques del projecte i implementa un pla de reducció d’emissions amb participació d’experts ambientals."
+        }
+    },
+    "LandformChanges": {
+        "summaries": {
+            "1": "Les alteracions en la morfologia són lleus i existeixen bones possibilitats de restaurar completament la topografia original.",
+            "2": "El projecte ha modificat una part moderada del terreny, però la recuperació es considera factible amb mesures adequades.",
+            "3": "El terreny ha patit alteracions importants que requeriran esforços de restauració significatius per assolir una millora parcial.",
+            "4": "La modificació afecta una gran part de la morfologia, amb greus dificultats per recuperar l'estat original o un equivalent.",
+            "5": "L'impacte sobre el relleu és molt greu i es considera pràcticament irreversible, deixant conseqüències visibles i persistents."
+        },
+        "advices": {
+            "1": "Continua aplicant pràctiques de restauració anticipada i seguiment ambiental per mantenir l'impacte mínim.",
+            "2": "Dissenya i activa programes de restauració progressiva abans que les afectacions esdevinguin més greus.",
+            "3": "Involucra especialistes en restauració geomorfològica per definir accions que ajudin a recuperar parcialment el terreny.",
+            "4": "Compensa les pèrdues amb mesures de millora ambiental i implementa tècniques de control de l'erosió i la revegetació.",
+            "5": "Replanteja el projecte o implementa solucions de restauració ecològica avançada per mitigar l'impacte crític observat."
+        }
+    },
+    "Biodiversity": {
+        "summaries": {
+            "1": "Gestió exemplar de la biodiversitat amb mínima afectació i mesures efectives de conservació i restauració.",
+            "2": "El projecte ha considerat la biodiversitat de forma significativa i amb plans de restauració parcial.",
+            "3": "Afectació important a la biodiversitat, però amb alguns esforços parcials per mitigar-la.",
+            "4": "Impacte moderat sobre la biodiversitat amb escasses mesures de gestió o restauració.",
+            "5": "Pèrdua extrema de biodiversitat sense pràcticament mesures de restauració o compensació establertes."
+        },
+        "advices": {
+            "1": "Documenta les bones pràctiques per replicar-les en futurs projectes i assegura el manteniment a llarg termini.",
+            "2": "Mantén les accions actuals i millora la monitorització per assegurar l’èxit a llarg termini.",
+            "3": "Millora les accions de compensació i intensifica la restauració d’ecosistemes afectats.",
+            "4": "Estableix mesures específiques per restaurar hàbitats i implanta programes de seguiment ambiental.",
+            "5": "Dissenya i implementa un pla robust de gestió de la biodiversitat amb accions immediates de restauració."
+        }
+    },
+    "Subsidence": {
+        "summaries": {
+            "5": "La subsidència és greu i incompatible amb les condicions de la superfície, amb riscos estructurals, ambientals i socials."
+        },
+        "advices": {
+            "5": "Revisa a fons el disseny i adopta mesures immediates de mitigació per protegir infraestructures, ecosistemes i poblacions."
+        }
+    },
+    "PositiveEnvironmental": {
+        "summaries": {
+            "1": "L’activitat minera no ha generat millores ambientals significatives. No s’han observat accions com reforestació, millora de la qualitat del sòl o de l’aigua, ni col·laboracions ambientals destacables.",
+            "2": "S’han aplicat algunes millores puntuals en l’entorn natural, però l’abast és limitat i no s’ha consolidat una estratègia ambiental clara.",
+            "3": "L’activitat minera ha inclòs certes accions ambientals amb impacte positiu, però encara hi ha marge per ampliar la restauració i garantir-ne la sostenibilitat.",
+            "4": "Es detecten esforços destacables en restauració ecològica, reforestació i col·laboració ambiental. Les millores són notables, però encara no massives.",
+            "5": "La mina ha tingut un paper clau en la regeneració ambiental. S’han implementat accions sòlides i sostingudes com reforestació a gran escala, recuperació de biodiversitat i millores en sòl i aigua."
+        },
+        "advices": {
+            "1": "Cal desenvolupar una estratègia de restauració ambiental, iniciant projectes com la reforestació, tractament d’aigües i regeneració de sòls.",
+            "2": "Amplia les accions ambientals existents i assegura’t que s’implementin sistemes sostenibles a llarg termini amb participació d’organitzacions ambientals.",
+            "3": "Consolida els projectes iniciats i crea un pla integral de restauració ecològica que inclogui hàbitats, infraestructura verda i col·laboració científica.",
+            "4": "Mantingues els esforços i documenta els resultats per garantir la continuïtat dels beneficis ambientals després del tancament de la mina.",
+            "5": "Fes difusió del model aplicat com a exemple de bones pràctiques i promou la transferència del coneixement a altres projectes miners."
+        }
+    },
+    "ExtensionLiabilities": {
+        "name": "Extensió dels passius ambientals",
+        "summaries": {
+            "1": "L'àrea afectada per passius ambientals és nul·la o molt reduïda, fet que reflecteix una integració excel·lent de la mina amb l'entorn.",
+            "2": "Els passius ocupen una àrea reduïda, però ja són detectables dins de la superfície total de la mina.",
+            "3": "Una part significativa del terreny està ocupada per passius, requerint una gestió estructurada a mig termini.",
+            "4": "Els passius cobreixen gran part de la mina i podrien condicionar futures restauracions o usos del sòl.",
+            "5": "Una àrea molt extensa està ocupada per passius, la qual cosa pot generar impactes ambientals molt difícils de revertir."
+        },
+        "advices": {
+            "1": "Mantén aquesta proporció i documenta els procediments aplicats per evitar la propagació de passius ambientals.",
+            "2": "Estudia vies per estabilitzar i restaurar les àrees afectades abans que el percentatge augmenti.",
+            "3": "Implanta controls i plans de restauració progressiva per limitar l’expansió dels passius.",
+            "4": "Prioritza accions de contenció i recuperació, combinades amb programes de vigilància ambiental.",
+            "5": "Reformula la gestió del projecte amb enfocament prioritari en la minimització i la reabsorció dels passius."
+        }
+    },
+    "LiabilityImpact": {
+        "name": "Impacte dels passius ambientals",
+        "summaries": {
+            "1": "L'impacte ambiental associat als passius és molt baix, sense alteracions significatives ni riscos a llarg termini.",
+            "2": "Hi ha un impacte ambiental moderat que podria requerir alguna actuació correctiva, però no afecta greument l'entorn.",
+            "3": "L'impacte ambiental és rellevant i podria alterar a llarg termini les condicions naturals o socials si no es prenen mesures.",
+            "4": "L'impacte ambiental és molt important, amb risc de canvis permanents en l'entorn i afectacions greus a les comunitats properes.",
+            "5": "L'impacte ambiental és extremadament greu i pot ser irreversible, afectant l'entorn i les comunitats a escala local, nacional o internacional."
+        },
+        "advices": {
+            "1": "Mantingues el nivell actual de control i seguiment ambiental.",
+            "2": "Implementa accions preventives per evitar un augment dels passius i estableix sistemes de seguiment bàsics.",
+            "3": "Defineix un pla de gestió i restauració per prevenir futurs riscos ambientals.",
+            "4": "Activa mesures urgents de rehabilitació i estudis d’impacte detallats per cada zona afectada.",
+            "5": "Aplica plans de restauració integrals i busca fons específics per revertir els efectes greus."
+        }
+    }
+}

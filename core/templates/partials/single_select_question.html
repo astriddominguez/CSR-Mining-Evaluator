@@ -1,0 +1,31 @@
+<div class="mb-3" id="question-{{select_id}}" {% if dependency and dependency != 'false' %} data-depends-on="{{ dependency.depends_on }}" data-is-on="{{ dependency.is_on }}" data-behaviour="{{ dependency.behaviour }}" {% endif %}>
+  <div class="d-flex justify-content-between align-items-center">
+    <label for="{{ select_id }}" class="form-label fs-4">
+      {{ question }}
+      {% if required %}
+      <span class="text-danger">*</span>
+      {% endif %}
+      {% if to_group %}
+      <span class="{{ gclass }}">●</span>
+      {% endif %}
+    </label>
+    {% if popover_title and popover_content %}
+      <button type="button" class="btn btn-circle info-button text-white btn-sm" data-bs-toggle="popover" data-bs-html="{{html_on}}" title="{{ popover_title }}" data-bs-content="{{ popover_content }}">
+        <i class="fa-solid fa-info"></i>
+      </button>
+    {% endif %}
+  </div>
+  <div class="row ms-lg-4">
+    <div class="col">
+      <select class="form-select fs-5" id="{{ select_id }}" name="{{ select_id }}" required>
+        <option value="" selected>{{ placeholder }}</option>
+        {% for option in options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+      </select>
+      {% if msg_below %}
+      <p class="text-muted">{{ msg_below }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>

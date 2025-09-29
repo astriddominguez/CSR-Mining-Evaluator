@@ -1,0 +1,700 @@
+[
+    {
+        "section_name": "Contractació Local",
+        "id": "LocalProcurement",
+        "panel_msg": { 
+            "Integració de contractistes locals": "text-primary",
+            "Diversificació de proveïdors locals": "text-success"
+        },
+        "questions": [
+            {
+                "question": "Percentatge de departaments que utilitzen proveïdors locals (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-primary",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "input_id": "departments_using_local_suppliers_percentatge",
+                "dependency": "false",
+                "placeholder": "Ex: 50",
+                "popover_title": "Què es considera proveïdor local?",
+                "html_on": "false",
+                "popover_content": "Un proveïdor local és aquell que està situat a menys de 20 km de la mina."
+            },
+            {
+                "question": "Percentatge de departaments amb grans contractistes locals (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-success",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "input_id": "large_local_contractors_percentatge",
+                "dependency": "false",
+                "placeholder": "Ex: 30",
+                "popover_title": "Característiques d'un gran contractista local",
+                "html_on": "true",
+                "popover_content": "<ul class='mb-0'><li>Facturació anual superior a 50 milions d’euros.</li><li>Més de 250 empleats.</li><li>Ser una empresa local (ubicada dins la regió on opera la mina).</li></ul>"
+            }
+        ]
+    },
+    {
+        "section_name": "Cost Local",
+        "id": "LocalExpediture",
+        "panel_msg": { 
+            "Despesa operativa local i regional": "text-primary",
+            "Despesa nacional": "text-success",
+            "Qualitat de l’ocupació local": "text-warning"
+        },
+        "questions": [
+            {
+                "question": "Percentatge de cost local i regional (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 10,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-primary",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "input_id": "expediture_structure_local_percentatge",
+                "dependency": "false",
+                "placeholder": "Ex: 70",
+                "popover_title": "Què es considera cost local i regional?",
+                "html_on": "true",
+                "popover_content": "<ul class='mb-0'><li>Es considera cost local quan els recursos provenen d’una distància inferior a 20 km de la mina.</li><li>Es considera cost regional quan els recursos provenen d’una distància entre 20 km i 200 km.</li></ul>"
+            },
+            {
+                "question": "Percentatge de cost nacional (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 20,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-success",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "input_id": "expediture_structure_national_percentatge",
+                "dependency": "false",
+                "placeholder": "Ex: 10",
+                "popover_title": "Què es considera cost nacional?",
+                "html_on": "false",
+                "popover_content": "Es considera cost nacional quan els recursos provenen d’una distància d’entre 200 km i 1000 km de la mina."
+            },
+            {
+                "question": "Percentatge d'empleats locals i regionals (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-warning",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "input_id": "employment_quality_percentatge",
+                "dependency": "false",
+                "placeholder": "Ex: 40",
+                "popover_title": "Recordatori sobre els empleats",
+                "html_on": "true",
+                "popover_content": "<ul class='mb-0'><li>Han de viure a una distància inferior a 200 km de la mina.</li><li>Han d'ocupar càrrecs intermedis, tècnics o superiors.</li></ul>"
+            }
+        ]
+    },
+    {
+        "section_name": "Creació d'Infraestructura",
+        "id": "InfraestructureCreation",
+        "questions": [
+            {
+                "question": "Vols avaluar la creació o millora d'infraestructures?",
+                "type": "radio",
+                "input_id": "infraestructure-evaluate",
+                "dependency": "false"
+            },
+            {
+                "question": "S’han construït o millorat infraestructures a la zona a causa de l’activitat minera?",
+                "type": "radio",
+                "input_id": "infraestructure",
+                "msg_below": "* Si la resposta és No, l’índex serà directament 1. Nota que no té sentit respondre la resta de preguntes.",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Quin tipus d’infraestructures s’han desenvolupat o millorat?",
+                "type": "multiple-select",
+                "input_id": "infrastructure-type",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                },
+                "options": [
+                    {
+                        "id": "default_1",
+                        "name": ""
+                    },
+                    {
+                        "id": "carreteres",
+                        "name": "Carreteres"
+                    },
+                    {
+                        "id": "hospitals",
+                        "name": "Hospitals"
+                    },
+                    {
+                        "id": "escoles",
+                        "name": "Escoles"
+                    },
+                    {
+                        "id": "xarxes",
+                        "name": "Xarxes elèctriques"
+                    },
+                    {
+                        "id": "telecomunicacions",
+                        "name": "Telecomunicacions"
+                    },
+                    {
+                        "id": "altres",
+                        "name": "Altres"
+                    }
+                ]
+            },
+            {
+                "question": "La comunitat ha estat consultada sobre quines infraestructures eren necessàries?",
+                "type": "radio",
+                "input_id": "consultation",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Les infraestructures creades continuaran beneficiant la comunitat després del tancament de la mina?",
+                "type": "radio",
+                "input_id": "benefits-after-close",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "L’activitat minera ha afectat les infraestructures existents?",
+                "type": "radio",
+                "input_id": "infraestructures-affected",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "S’han fet millores petites en camins, accés a aigua potable o xarxes elèctriques?",
+                "type": "radio",
+                "input_id": "infraestructures-upgrades",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "S’han construït instal·lacions però només per a ús intern de la mina?",
+                "type": "radio",
+                "input_id": "facilities-for-internal-use",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "S’han construït hospitals, carreteres, escoles o instal·lacions que beneficien la comunitat local?",
+                "type": "radio",
+                "input_id": "instalations-for-benefit",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                },
+                "popover_title": "Què es considera comunitat local?",
+                "html_on": "false",
+                "popover_content": "Comunitat que resideix dins un radi de 20 km al voltant de la mina."
+            },
+            {
+                "question": "S’ha generat ocupació local en la construcció d’aquestes infraestructures?",
+                "type": "radio",
+                "input_id": "new-local-jobs",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                },
+                "popover_title": "Què es considera ocupació local?",
+                "html_on": "false",
+                "popover_content": "Feina realitzada per persones residents dins un radi de 20 km de la mina."
+            },
+            {
+                "question": "Les infraestructures faciliten l’accés a serveis bàsics a la zona?",
+                "type": "radio",
+                "input_id": "facilities-for-basic-services",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Les infraestructures han generat un creixement econòmic a la regió?",
+                "type": "radio",
+                "input_id": "increment-economy",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "S’han millorat vies de comunicació que connecten diverses ciutats o regions?",
+                "type": "radio",
+                "input_id": "means-of-communication",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Hi ha acords per al manteniment d’aquestes infraestructures en el futur?",
+                "type": "radio",
+                "input_id": "maintenance-agreements",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Les infraestructures han canviat significativament la qualitat de vida de la població?",
+                "type": "radio",
+                "input_id": "quality-of-life",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "L’impacte de les millores és visible en el desenvolupament econòmic, educació i salut de la població?",
+                "type": "radio",
+                "input_id": "visible-improvements",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "El projecte ha generat canvis estructurals en la connectivitat del país?",
+                "type": "radio",
+                "input_id": "connectivity-changes",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Qui serà responsable del manteniment d’aquestes infraestructures un cop la mina tanqui?",
+                "type": "select",
+                "input_id": "post-closure-maintenance",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                },
+                "options": [
+                    "Govern local",
+                    "Empresa privada",
+                    "Comunitat local",
+                    "Altres"
+                ]
+            },
+            {
+                "question": "Les infraestructures poden ser utilitzades per a altres propòsits una vegada acabada l’activitat minera?",
+                "type": "radio",
+                "input_id": "post-mining-use",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Hi ha acords amb el govern local per a l’administració d’aquestes infraestructures després del tancament de la mina?",
+                "type": "radio",
+                "input_id": "government-agreements",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Les infraestructures han estat dissenyades amb materials i tecnologies sostenibles?",
+                "type": "radio",
+                "input_id": "sustainable-design",
+                "dependency": {
+                    "depends_on": "infraestructure-evaluate",
+                    "is_on": "false-infraestructure-evaluate",
+                    "behaviour": "hide"
+                }
+            }
+        ]
+    },
+    {
+        "section_name": "Cadena de Valor",
+        "id": "ValueChain",
+        "panel_msg": { 
+            "Tipus de producte i valor afegit": "text-primary",
+            "Inversió en R+D i formació local": "text-success"
+        },
+        "questions": [
+            {
+                "question": "On es processa el mineral i quin paper té en el desenvolupament industrial i sostenible?",
+                "type": "select",
+                "input_id": "type_of_product",
+                "to_group": true, 
+                "gclass": "text-primary",
+                "dependency": "false",
+                "options": [
+                    "Producte refinat mínim, encara requereix processos addicionals. Procés fet a la mateixa regió o país.",
+                    "Producte final processat al país, però lluny de la mina, sense paper estratègic clar.",
+                    "Producte final processat al país, lluny de la mina, i clau per al desenvolupament industrial nacional o supranacional.",
+                    "Producte final processat a la mateixa regió de la mina, i clau per al desenvolupament industrial nacional o supranacional.",
+                    "Producte processat a la regió i essencial per al desenvolupament sostenible de la societat."
+                ],
+                "popover_title": "Com s'interpreta el processament i el seu valor?",
+                "html_on": "true",
+                "popover_content": "<ul><li><strong>Regió:</strong> dins d’un radi de 200 km de la mina.</li><li><strong>Producte final:</strong> es pot utilitzar directament en una altra indústria.</li><li><strong>Valor estratègic:</strong> augmenta si contribueix al desenvolupament industrial nacional o als objectius de sostenibilitat.</li></ul>"                   
+            },
+            {
+                "question": "Pressupost total de l'operació (euros)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "input_id": "r_and_d_1",
+                "to_group": true, 
+                "gclass": "text-success",
+                "dependency": "false",
+                "placeholder": "Ex: 250000",
+                "msg_below": "Si el pressupost total és 0 i/o no hi ha cap inversió, no es realitzarà el càlcul d’aquesta secció."
+            },
+            {
+                "question": "Inversió en I + D (projectes amb universitats, innovació tecnològica) (euros).",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "input_id": "r_and_d_2",
+                "to_group": true, 
+                "gclass": "text-success",
+                "dependency": "false",
+                "placeholder": "Ex: 50000",
+                "popover_title": "Què inclou la inversió en I+D?",
+                "html_on": "true",
+                "popover_content": "<ul><li>Projectes amb universitats o centres de recerca.</li><li>Innovació en processos o tecnologies mineres.</li><li>Desenvolupament de nous productes o millores tècniques.</li></ul>"
+            
+            },
+            {
+                "question": "Inversió en formació especialitzada (capacitacions tècniques per al personal) (euros).",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "input_id": "r_and_d_3",
+                "to_group": true, 
+                "gclass": "text-success",
+                "dependency": "false",
+                "placeholder": "Ex: 12000",
+                "popover_title": "Què s'entén per formació especialitzada?",
+                "html_on": "true",
+                "popover_content": "<ul><li>Capacitacions tècniques per al personal miner.</li><li>Formació en seguretat, processos, manteniment, etc.</li><li>Programes impartits per entitats especialitzades o internes.</li></ul>"
+            }
+        ]
+    },
+    {
+        "section_name": "Impacte de les Pertorbacions Econòmiques",
+        "id": "EconomicDisturbance",
+        "questions": [
+            {
+                "question": "Quines han estat les activitats socioeconòmiques afectades?",
+                "type": "multiple-select",
+                "input_id": "affected-activities",
+                "msg_below": "* Deixa el camp buit si cap activitat socioeconòmica ha estat afectada.",
+                "dependency": "false",
+                "options": [
+                    {
+                        "id": "default_2",
+                        "name": ""
+                    },
+                    {
+                        "id": "agricultura",
+                        "name": "Agricultura"
+                    },
+                    {
+                        "id": "ramaderia",
+                        "name": "Ramaderia"
+                    },
+                    {
+                        "id": "pesca",
+                        "name": "Pesca"
+                    },
+                    {
+                        "id": "turisme",
+                        "name": "Turisme"
+                    },
+                    {
+                        "id": "comunitats_indigenes_o_locals",
+                        "name": "Comunitats índigenes o locals"
+                    },
+                    {
+                        "id": "affected_activities_altres",
+                        "name": "Altres"
+                    }
+                ]
+            },
+            {
+                "question": "Nombre total de famílies afectades",
+                "type": "number_input",
+                "number_type": "int",
+                "msg_below": "* Si el nombre de famílies afectades és 0, no es calcularà cap impacte econòmic.",
+                "min": 0,
+                "input_id": "families_vs_jobs_1",
+                "dependency": "false",
+                "placeholder": "Ex: 2000",
+                "popover_title": "Què vol dir famílies afectades?",
+                "html_on": "false",
+                "popover_content": "Famílies que han perdut terres, habitatge o fonts d’ingrés per causa directa de l’activitat minera."
+            },
+            {
+                "question": "Nombre total d'ocupacions generades",
+                "type": "number_input",
+                "number_type": "int",
+                "min": 0,
+                "input_id": "families_vs_jobs_2",
+                "dependency": "false",
+                "placeholder": "Ex: 200"
+            },
+            {
+                "question": "Com valores l’abast de l’impacte sobre la forma de vida local?",
+                "type": "select",
+                "input_id": "full-impact",
+                "msg_below": "* Si selecciones 'No afecta', no es calcularà cap impacte econòmic.",
+                "dependency": "false",
+                "options": [
+                    "Afecta tota la comunitat",
+                    "Afecta només una part",
+                    "No afecta"
+                ],
+                "popover_title": "Què s’entén per forma de vida local?",
+                "html_on": "true",
+                "popover_content": "<ul><li>Inclou activitats econòmiques, rutines, formes de subsistència i cultura de la comunitat local.</li><li>També pot incloure la necessitat de reubicació o pèrdua de tradicions locals.</li></ul>"
+            },
+            {
+                "question": "Quan es produeix l’impacte sobre la forma de vida local?",
+                "type": "select",
+                "input_id": "long-term-impact",
+                "dependency": "false",
+                "options": [
+                    "Només durant la vida útil de la mina",
+                    "Tant durant com després del tancament",
+                    "No se sap"
+                ]
+            }
+        ]
+    },
+    {
+        "section_name": "Participació Adiccional",
+        "id": "AdditionalInvolvement",
+        "questions": [
+            {
+                "question": "La mina ofereix alguna forma de participació econòmica a les comunitats locals?",
+                "type": "radio",
+                "input_id": "economic-participation",
+                "dependency": "false",
+                "popover_title": "Què és la participació econòmica?",
+                "html_on": "true",
+                "popover_content": "<ul><li>Participació en els beneficis de la mina.</li><li>Accés a projectes compartits o capital del projecte.</li><li>Altres mecanismes que impliquen retorn econòmic directe.</li></ul>"
+            },
+            {
+                "question": "Els treballadors o comunitats poden adquirir accions de l’empresa minera?",
+                "type": "radio",
+                "input_id": "acquiring-shares",
+                "dependency": "false",
+                "popover_title": "Compra d'accions",
+                "html_on": "true",
+                "popover_content": "<ul><li>Fa referència a la possibilitat de comprar accions o participacions dins l’empresa operadora de la mina.</li><li>Pot ser a través de programes específics per a treballadors o comunitats locals.</li></ul>"
+            },
+            {
+                "question": "Existeix un programa de control ambiental amb la participació de comunitats locals o ONG?",
+                "type": "radio",
+                "input_id": "program-environment-control",
+                "dependency": "false",
+                "popover_title": "Control ambiental participatiu",
+                "html_on": "true",
+                "popover_content": "<ul><li>Supervisió conjunta de l’impacte ambiental del projecte.</li><li>Amb implicació d’ONG o representants comunitaris en l’equip de seguiment.</li></ul>"
+            },
+            {
+                "question": "La mina contribueix a la protecció del patrimoni cultural i les tradicions locals?",
+                "type": "radio",
+                "input_id": "heritage-protection",
+                "dependency": "false"
+            },
+            {
+                "question": "S’han implicat comunitats indígenes o ONG en la presa de decisions del projecte miner?",
+                "type": "radio",
+                "input_id": "decisions-comunity",
+                "dependency": "false"
+            },
+            {
+                "question": "La mina ofereix assistència en cas de desastres naturals a la comunitat?",
+                "type": "radio",
+                "input_id": "emergency-assistence",
+                "dependency": "false"
+            },
+            {
+                "question": "Els treballadors de la mina participen en activitats de voluntariat per ajudar la comunitat?",
+                "type": "radio",
+                "input_id": "employers-volunteer",
+                "dependency": "false"
+            },
+            {
+                "question": "Quantes altres activitats es duen a terme (a banda de les que ja has seleccionat)?",
+                "type": "number_input",
+                "number_type": "int",
+                "min": 0,
+                "input_id": "additional-others",
+                "dependency": "false",
+                "placeholder": "Ex: 3",
+                "msg_below": "* Camp opcional. Només si es duen a terme altres activitats comunitàries no recollides anteriorment."
+            }
+        ]
+    },
+    {
+        "section_name": "Condicions Finals",
+        "id": "ClosureProcess",
+        "questions": [
+            {
+                "question": "Quines són les condicions actuals del lloc que s’ha de restaurar?",
+                "type": "select",
+                "input_id": "added_value_final_conditions_info",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "dependency": "false",
+                "options": [
+                    "Contaminació del sòl i l'aigua present.",
+                    "Degradació de la biodiversitat i ecosistemes.",
+                    "Infraestructures abandonades en mal estat.",
+                    "Residus miners acumulats (tailings).",
+                    "Altres problemes ambientals o socials."
+                ]
+            },
+            {
+                "question": "Quin és l’ús futur previst per a l’àrea restaurada?",
+                "type": "select",
+                "input_id": "added_value_final_conditions_1",
+                "dependency": "false",
+                "options": [
+                    "Agricultura o ramaderia.",
+                    "Àrea protegida per conservació.",
+                    "Desenvolupament industrial.",
+                    "Habitatge o ús urbà.",
+                    "Infraestructura per energies renovables.",
+                    "Altres usos econòmics o socials"
+                ]
+            },
+            {
+                "question": "Quin és l’impacte ambiental i social de la mina abans del tancament?",
+                "type": "select",
+                "input_id": "added_value_final_conditions_2",
+                "dependency": "false",
+                "options": [
+                    "Alta contaminació de l’aigua i aire",
+                    "Danys significatius a la biodiversitat",
+                    "Desplaçament de comunitats locals",
+                    "Pèrdua d'ocupació massiva a la regió",
+                    "Pocs impactes negatius significatius"
+                ]
+            },
+            {
+                "question": "Existeixen plans de rehabilitació definits i acceptats per la comunitat i les autoritats?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_3",
+                "dependency": "false"
+            },
+            {
+                "question": "Existeix un pla de tancament documentat i validat?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_4",
+                "dependency": "false",
+                "popover_title": "Pla de tancament",
+                "html_on": "true",
+                "popover_content": "<ul><li>Document que estableix com es tancarà la mina de manera segura i responsable.</li><li>Inclou restauració del sòl, tractament de residus, i usos futurs de l'àrea.</li></ul>"
+            },
+            {
+                "question": "Hi ha provisió financera per garantir la rehabilitació?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_5",
+                "dependency": "false",
+                "popover_title": "Provisió financera",
+                "html_on": "true",
+                "popover_content": "<ul><li>Fons reservats específicament per cobrir els costos de la rehabilitació.</li><li>Assegura que la mina pot ser restaurada encara que l’empresa cessi activitat.</li></ul>"
+            },
+            {
+                "question": "El pla segueix els estàndards de RMF o altres entitats reguladores?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_6",
+                "dependency": "false",
+                "popover_title": "Estàndards RMF",
+                "html_on": "true",
+                "popover_content": "<ul><li>RMF: Responsible Mining Foundation.</li><li>Estàndards internacionals per garantir un tancament segur, socialment just i ambientalment adequat.</li></ul>"
+            },
+            {
+                "question": "Es manté la qualitat del sòl i la biodiversitat?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_7",
+                "dependency": "false"
+            },
+            {
+                "question": "Es garanteix que no hi haurà contaminació de l’aigua i l’aire?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_8",
+                "dependency": "false"
+            },
+            {
+                "question": "Existeixen programes de reskilling per a ex-treballadors miners?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_9",
+                "dependency": "false",
+                "popover_title": "Reskilling",
+                "html_on": "true",
+                "popover_content": "<ul><li>Programes de formació per ajudar els ex-treballadors a adquirir noves competències.</li><li>Permet la seva integració en altres sectors un cop la mina tanca.</li></ul>"
+            },
+            {
+                "question": "S'ha planificat una transició econòmica a la regió afectada?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_10",
+                "dependency": "false"
+            },
+            {
+                "question": "Es considera reubicació i protecció social per a la comunitat local?",
+                "type": "radio",
+                "input_id": "added_value_final_conditions_11",
+                "dependency": "false"
+            }
+        ]
+    }
+]

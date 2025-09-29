@@ -1,0 +1,13 @@
+<div class="mb-3" id="question-{{id}}" {% if dependency and dependency != 'false' %} data-depends-on="{{ dependency.depends_on }}" data-is-on="{{ dependency.is_on }}" data-behaviour="{{ dependency.behaviour }}" {% endif %}>
+  <label for="{{ id }}" class="form-label fs-4">
+    {{ label }}
+    {% if required %}
+    <span class="text-danger">*</span>
+    {% endif %}
+  </label>
+  <div class="row ms-lg-4">
+    <div class="col">
+      <input type="text" class="form-control fs-5" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" {% if required %}required{% endif %}>
+    </div>
+  </div>
+</div>

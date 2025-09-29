@@ -1,0 +1,179 @@
+{
+    "departments_using_local_suppliers_percentatge": {
+        "name": "Integració de contractistes locals",
+        "summaries": {
+            "1": "L’ús de proveïdors locals és molt limitat i no contribueix gaire a l’economia local.",
+            "2": "Hi ha una presència parcial de contractistes locals, però encara insuficient.",
+            "3": "El nivell d’integració és acceptable però millorable.",
+            "4": "Bona integració local que beneficia l’economia propera.",
+            "5": "Excel·lent ús de contractistes locals, amb fort impacte positiu al territori."
+        },
+        "advices": {
+            "1": "Revisa les polítiques de contractació i estableix accions per identificar, formar i incorporar empreses locals.",
+            "2": "Comença programes de col·laboració amb petits proveïdors locals i ofereix suport per millorar la seva capacitat operativa.",
+            "3": "Mantén l’ús actual i busca maneres d’ampliar-lo a altres departaments o serveis.",
+            "4": "Consolida les relacions actuals i promou pràctiques estables i transparents de contractació local.",
+            "5": "Documenta i comparteix l’experiència com a bona pràctica, i garanteix la continuïtat del model."
+        }
+    },
+    "large_local_contractors_percentatge": {
+        "name": "Diversificació de proveïdors locals",
+        "summaries": {
+            "1": "Gairebé no hi ha grans contractistes locals implicats, cosa que pot limitar el desenvolupament econòmic regional.",
+            "2": "Participació parcial de grans proveïdors locals, però encara lluny del rang òptim.",
+            "3": "Dependència excessiva de grans proveïdors locals en gairebé tots els departaments.",
+            "4": "Bona presència de grans contractistes, però propera al límit superior.",
+            "5": "Òptim equilibri entre grans i petits contractistes locals."
+        },
+        "advices": {
+            "1": "Fomenta la participació de grans empreses locals mitjançant polítiques d’incentivació i aliances estratègiques.",
+            "2": "Explora nous sectors dins del projecte on es pugui integrar empresariat local de mida mitjana o gran.",
+            "3": "Reequilibra la contractació promovent també la participació de petites i mitjanes empreses locals.",
+            "4": "Mantén el nivell, però assegura que hi hagi espai per a empreses més petites per fomentar l’equilibri.",
+            "5": "Documenta el model i aplica processos per mantenir la diversitat empresarial al llarg del projecte."
+        }
+    },
+    "expediture_structure_local_percentatge": {
+        "name": "Despesa operativa local i regional",
+        "summaries": {
+            "1": "Només una petita part de la despesa operativa es queda al territori local o regional.",
+            "2": "El percentatge de despesa local comença a ser rellevant, però encara és insuficient.",
+            "3": "Hi ha una aportació mitjana a l’economia local i regional, però amb marge de millora.",
+            "4": "Una part important de la despesa es queda al territori, amb impacte positiu en el desenvolupament local.",
+            "5": "La major part de la despesa operativa es reinverteix a nivell local o regional."
+        },
+        "advices": {
+            "1": "Redissenya els processos de contractació per facilitar l’accés a proveïdors locals i ofereix formació per millorar la seva competitivitat.",
+            "2": "Estableix acords amb empreses de proximitat i dona suport a iniciatives que promoguin la creació d’oferta local.",
+            "3": "Millora la integració local estenent la participació a més serveis o departaments.",
+            "4": "Consolida les bones pràctiques actuals i vetlla per la transparència i continuïtat dels contractes locals.",
+            "5": "Documenta l’estratègia i crea mecanismes perquè la despesa local es mantingui estable al llarg del temps."
+        }
+    },
+    "expediture_structure_national_percentatge": {
+        "name": "Despesa nacional",
+        "summaries": {
+            "1": "Una part de la despesa es queda al país, però sense impacte local significatiu.",
+            "2": "Despesa majoritàriament nacional amb poca repercussió local. Només acceptable si no hi ha alternatives.",
+            "3": "Quasi tota la despesa és nacional. Pot ser positiva si no hi ha opcions locals o regionals."
+        },
+        "advices": {
+            "1": "Redirigeix més despesa cap a àmbits locals o regionals.",
+            "2": "Desenvolupa alternatives properes per reduir la dependència nacional.",
+            "3": "Planifica estratègies per crear capacitat local si no existeix."
+        }
+    },
+    "employment_quality_percentatge": {
+        "name": "Qualitat de l’ocupació local",
+        "summaries": {
+            "1": "La majoria dels llocs qualificats són ocupats per persones de fora, amb poca integració del talent local.",
+            "2": "Hi ha certa presència local en llocs qualificats, però encara molt limitada.",
+            "3": "Participació moderada de personal local en posicions tècniques i directives.",
+            "4": "Bona integració de talent local i regional en llocs qualificats.",
+            "5": "Excel·lent presència de treballadors locals en llocs tècnics, de comandament i responsabilitat."
+        },
+        "advices": {
+            "1": "Impulsa programes de formació i capacitació per accedir a posicions tècniques i directives locals.",
+            "2": "Promou polítiques actives de contractació local per a llocs de més qualificació.",
+            "3": "Estableix itineraris de promoció interna per a personal local i regional.",
+            "4": "Mantén la integració local i reforça els programes d’especialització i lideratge.",
+            "5": "Comparteix l’estratègia com a cas d’èxit i dóna suport a altres projectes similars."
+        }
+    },
+    "InfraestructureCreation": {
+        "summaries": {
+            "1": "No es detecten millores ni canvis rellevants a les infraestructures existents, i poden haver-hi afectacions puntuals.",
+            "2": "S'observen petites millores en infraestructures locals, regionals o nacionals, amb un impacte limitat.",
+            "3": "Es registren millores que contribueixen positivament al desenvolupament econòmic en algun nivell.",
+            "4": "Les millores realitzades tenen un impacte important en diversos nivells i generen canvis econòmics emergents.",
+            "5": "Les infraestructures millorades tenen un impacte molt ampli i poden transformar l’economia de manera sostinguda a llarg termini."
+        },
+        "advices": {
+            "1": "Explora oportunitats per aprofitar o reconvertir infraestructures existents, implicant la comunitat local.",
+            "2": "Fomenta l'expansió d'infraestructures bàsiques i col·labora amb actors locals per maximitzar el benefici social.",
+            "3": "Consolida les millores existents i impulsa nous projectes per reforçar el desenvolupament econòmic i social.",
+            "4": "Formalitza acords de manteniment i gestió, i promou l’ampliació de l’impacte positiu aconseguit.",
+            "5": "Documenta el model d’èxit i treballa en la seva replicació en altres regions per potenciar-ne l'impacte."
+        }
+    },
+    "type_of_product": {
+        "name": "Tipus de producte i valor afegit",
+        "summaries": {
+            "1": "La mina només fa la concentració del mineral i exporta el producte sense cap valor afegit.",
+            "2": "El producte final es processa completament dins del país, però lluny del lloc d’extracció.",
+            "3": "El processament nacional aporta valor estratègic per al desenvolupament industrial.",
+            "4": "El processament es fa a prop de la mina i contribueix a sectors estratègics regionals o europeus.",
+            "5": "Es genera un producte clau per al desenvolupament sostenible de la societat, amb transformació local."
+        },
+        "advices": {
+            "1": "Explora opcions per fer part del processament al país o la regió i retenir més valor afegit.",
+            "2": "Apropa les activitats de processament a la zona minera per millorar el retorn econòmic local.",
+            "3": "Consolida la cadena de valor amb aliances industrials que potenciïn sectors estratègics.",
+            "4": "Mantén i reforça els llaços amb sectors locals, promovent sinergies duradores.",
+            "5": "Comparteix el model i promou projectes similars que integrin sostenibilitat i valor local."
+        }
+    },
+    "r_and_d": {
+        "name": "Inversió en R+D i formació local",
+        "summaries": {
+            "1": "Només una petita part de la inversió en R+D i formació es destina a centres locals o nacionals.",
+            "2": "La inversió nacional en formació i recerca comença a ser significativa, però és limitada.",
+            "3": "Inversió moderada en centres locals i nacionals que contribueixen al coneixement tècnic.",
+            "4": "Alta inversió en col·laboració amb universitats i centres locals amb impacte tangible.",
+            "5": "Inversió molt elevada en recerca i formació local, generant coneixement i valor a llarg termini."
+        },
+        "advices": {
+            "1": "Estableix col·laboracions amb universitats i centres locals per retenir coneixement al territori.",
+            "2": "Amplia els programes de formació per a treballadors i projectes d’innovació conjunta.",
+            "3": "Consolida les aliances actuals i promou noves línies de recerca relacionades amb la mina.",
+            "4": "Reforça el vincle amb centres educatius i transfereix coneixement al teixit local.",
+            "5": "Documenta i exporta el model de col·laboració com a bona pràctica en altres projectes."
+        }
+    },
+    "EconomicDisturbance": {
+        "summaries": {
+            "2": "L'activitat minera té efectes limitats o parcials sobre l'activitat socioeconòmica local, amb afectació reduïda i generalment reversible.",
+            "3": "L'activitat minera genera alteracions en la forma de vida de part de la comunitat, però amb afectacions que poden ser gestionades o revertides amb el temps.",
+            "4": "L'activitat minera provoca una afectació important a la forma de vida de la comunitat durant el període d'activitat, dificultant el manteniment d'activitats econòmiques alternatives.",
+            "5": "L'activitat minera causa una afectació socioeconòmica molt severa, comprometen de manera greu la forma de vida de la comunitat, ja sigui per l'extensió de l'afectació o per la durada en el temps."
+        },
+        "advices": {
+            "2": "Fomenta bones pràctiques de convivència econòmica i promou la participació activa de la comunitat en les decisions.",
+            "3": "Supervisa els impactes de manera contínua i potencia la resiliència econòmica de les activitats locals més vulnerables.",
+            "4": "Estableix estratègies de suport a l'economia local i reforça la diversificació de fonts d'ingressos de la comunitat.",
+            "5": "Implementa plans d'actuació prioritaris per mitigar els danys socioeconòmics i promou alternatives de vida sostenibles a llarg termini."
+        }
+    },
+    "AdditionalInvolvement": {
+        "summaries": {
+            "1": "Només s’ha inclòs un element addicional, deixant moltes oportunitats de col·laboració i retorn social desaprofitades.",
+            "2": "S’han considerat dos elements addicionals, però encara hi ha molt marge de millora per assolir una implicació realment transformadora.",
+            "3": "S’han inclòs tres tipus d’implicació addicional, començant a generar valor més enllà de l’activitat extractiva.",
+            "4": "La implicació addicional és forta, amb diverses accions que poden perdurar més enllà de la vida útil de la mina.",
+            "5": "S’ha integrat una implicació completa i diversa amb la comunitat, promovent sostenibilitat, cultura i resilència postminera."
+        },
+        "advices": {
+            "1": "Explora i implementa noves formes d’implicació comunitària, com voluntariat, accés a accions o suport cultural.",
+            "2": "Amplia els programes existents afegint iniciatives amb valor autosostenible i enfocades al futur de la comunitat.",
+            "3": "Fomenta la col·laboració amb ONG i comunitats locals per reforçar les accions ja iniciades i diversificar-les.",
+            "4": "Mantén l’enfoc actual i documenta bones pràctiques que puguin servir com a model per altres projectes miners.",
+            "5": "Consolida l’estratègia d’implicació addicional per garantir la seva continuïtat i replicabilitat en nous entorns."
+        }
+    },
+    "ClosureProcess": {
+        "summaries": {
+            "1": "Valor afegit a llarg termini lleu.",
+            "2": "Valor afegit a llarg termini moderat.",
+            "3": "Valor afegit a llarg termini alt.",
+            "4": "Valor afegit a llarg termini alt, amb sinergia parcial amb el context específic.",
+            "5": "Valor afegit a llarg termini alt, amb una sinergia important amb el context específic."
+        },
+        "advices": {
+            "1": "Dissenya un pla de tancament amb l’objectiu de crear valor real per al territori, no només rehabilitació bàsica.",
+            "2": "Millora el pla actual amb accions sostenibles i en col·laboració amb actors locals.",
+            "3": "Assegura que els usos postmina siguin viables, útils i consensuats amb la comunitat.",
+            "4": "Integra els agents locals en la gestió postmina per garantir continuïtat i arrelament.",
+            "5": "Consolida el model com a exemple de tancament transformador i replicable."
+        }
+    }
+}

@@ -1,0 +1,405 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block stylesheets %}
+<style>
+  /* Fons amb color corporatiu de CSR */
+  .bg-csr {
+    background-color: #db8d34;
+  }
+
+  /* 
+  =================================
+  Contenidor d’informació detallada
+  =================================
+  */
+
+  /* Contenidor general amb estil "neumòrfic" suau */
+  .detail-container {
+    background: linear-gradient(145deg, #f4f6f8, #e9edf2);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow:
+      inset 1px 1px 4px rgba(0, 0, 0, 0.05),
+      inset -1px -1px 4px rgba(255, 255, 255, 0.6);
+  }
+
+  /* Targeta destacada amb gradient corporatiu i efecte 3D */
+  .card-detail-info {
+    background: linear-gradient(135deg, #db8d34 0%, #f3b66e 100%);
+    color: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    box-shadow:
+      5px 5px 12px rgba(0, 0, 0, 0.25),
+      -3px -3px 6px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  /* Efecte d’elevació quan l’usuari fa hover */
+  .card-detail-info:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow:
+      10px 10px 20px rgba(0, 0, 0, 0.25),
+      -4px -4px 8px rgba(255, 255, 255, 0.3);
+  }
+
+  /* 
+  ===================================================
+  Estils per a 'consells' segons color del semàfor
+  ===================================================
+  */
+
+  /* Color vermell intens: crítica greu */
+  .advice-semaphore-red {
+    background: #f8d7da;
+    color: #842029;
+    border-left: 5px solid #ea2121;
+  }
+
+  /* Vermell més clar: avís d’alerta moderada */
+  .advice-semaphore-light-red {
+    background: #fbeaea;
+    color: #a94442;
+    border-left: 5px solid #ea4242;
+  }
+
+  /* Verd clar: bones pràctiques, encara amb marge de millora */
+  .advice-semaphore-light-green {
+    background: #e7f5ec;
+    color: #2b593c;
+    border-left: 5px solid #5dca5d;
+  }
+
+  /* Verd fosc: excel·lent compliment o situació òptima */
+  .advice-semaphore-green {
+    background: #d1e7dd;
+    color: #0f5132;
+    border-left: 5px solid #26bd21;
+  }
+
+  
+  /* Taronja: situació de risc o millora important pendent */
+  .advice-semaphore-orange {
+    background: #fff3cd;
+    color: #664d03;
+    border-left: 5px solid #ffc107;
+  }
+
+  /* Groc clar: advertència suau, potencial de millora */
+  .advice-semaphore-yellow {
+    background: #fffbe6;
+    color: #665c00;
+    border-left: 5px solid #fff200c8;
+  }
+
+  /*
+  ================================================================
+  Classes auxiliars per colors de semàfor purs (fons de puntuació)
+  ================================================================ 
+  */
+
+  /* Fons vermell fort */
+  .red {
+    background: #ea2121;
+  }
+
+  /* Fons vermell clar */
+  .light-red {
+    background: #ea4242;
+  }
+
+  /* Fons taronja */
+  .orange {
+    background: #ffc107;
+  }
+
+  /* Fons groc intens */
+  .yellow {
+    background: #fff200c8;
+  }
+
+  /* Fons verd clar */
+  .light-green {
+    background: #5dca5d;
+  }
+
+  /* Fons verd intens */
+  .green {
+    background: #26bd21;
+  }
+
+</style>
+{% endblock %}
+
+
+{% block title %}
+Resultats – Índex Miner de Responsabilitat Social Corporativa
+{% endblock title %}
+
+{% block content %}
+
+<div id="results" class="container my-5">
+
+  <!-- Títol i resum del projecte -->
+  <div class="bg-dark p-4 rounded shadow-lg mb-4 text-white">
+    <h2 class="mb-1 fw-bold">🏗️ {{ project_data.project_name }}</h2>
+    <p class="mb-0 fs-5 fw-semibold">Empresa: {{ project_data.company_name }} | Fase: {{ project_data.phase }}</p>
+  </div>
+
+  <!-- Ubicació -->
+  <div class="row mb-4">
+    <div class="col-md-12">
+      <!-- col-md-8 -->
+      <div class="p-3 bg-dark rounded shadow-lg text-white">
+        <h4 class="fw-bold">🌍 Ubicació</h4>
+        <p class="fs-5 fw-semibold">{{ project_data.mine_address }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resultat global -->
+  <div class="bg-dark rounded p-2 shadow-lg text-white text-center fs-4 mb-4">
+    Puntuació global: <strong>{{ ratings.rating_total }}</strong> · Normalitzada: <strong>{{ ratings.nrating_total }}</strong>
+  </div>
+
+  <!-- Resultats detallats per dimensió -->
+  <div class="row">
+    <!-- Socioeconòmic -->
+    <div class="col-md-12">
+      {% include "partials/result_card.html" with total=ratings.socioeconomic.rating_total title="Dimensió Socioeconòmica" graph="results1" %}
+    </div>
+
+    <div class="col-md-12">
+      {% include "partials/result_detail.html" with detail=ratings.socioeconomic.result see_more_button_id="detail_button_1" detail_info_id="detail_info_1" %}
+    </div>
+
+
+    <!-- Ambiental -->
+    <div class="col-md-12 mt-4 mt-md-0">
+      {% include "partials/result_card.html" with total=ratings.environment.rating_total title="Dimensió Ambiental" graph="results2" %}
+    </div>
+
+    <div class="col-md-12">
+      {% include "partials/result_detail.html" with detail=ratings.environment.result see_more_button_id="detail_button_2" detail_info_id="detail_info_2" %}
+    </div>
+
+  </div>
+
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{% url 'evaluator' %}?last=true&fingerprintId={{ fingerprint }}" class="btn btn-dark btn-lg shadow fw-bold">
+      <i class="fas fa-arrow-left me-3"></i> Tornar
+    </a>
+  </div>
+
+
+</div>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+
+{{ ratings|json_script:"ratings-data" }}
+
+<script>
+  // Executa el codi només quan la llibreria amCharts està llesta
+  am5.ready(function() {
+    // Obté les puntuacions globals del sistema (injectades al template)
+    const ratings = JSON.parse($('#ratings-data').text());
+
+    // Extracte de les puntuacions per dimensió
+    const SocieconomicResult = ratings["socioeconomic"]["result"];
+    const EnvironmentResult = ratings["environment"]["result"];
+
+    // Genera els gràfics per a cada dimensió
+    create_chart(SocieconomicResult, "results1");
+    create_chart(EnvironmentResult, "results2");
+
+    /**
+     * Crea un gràfic de columnes amb amCharts 5 a partir d'una dimensió
+     * @param {Object} DimensionResult - Objecte amb els resultats de seccions d’una dimensió
+     * @param {string} graphId - ID del div on s'ha de renderitzar el gràfic
+    */
+    function create_chart(DimensionResult, graphId) {
+      const data = [];
+      let ymax = 0;
+
+      // Recorre les seccions de la dimensió i prepara les dades
+      for (const result in DimensionResult) {
+        const section = DimensionResult[result];
+        const section_rating = section.rating_total;
+
+        const fraction = section_rating.split("/");
+        const value = parseInt(fraction[0]); // puntuació obtinguda
+        const yvalue = parseInt(fraction[1]);  // puntuació màxima
+
+        if (yvalue > ymax) {
+          ymax = yvalue;
+        }
+
+        data.push({
+          section: section.name,
+          value: value,
+          label: section.rating_total,
+          color: "rgba(219, 141, 52, 0.8)" // color coorporatiu CSR 
+        });
+      }
+
+      /**
+       * Gràfic basat en l'exemple oficial d'amCharts:
+       * https://www.amcharts.com/demos/column-with-rotated-series/
+       * Adaptat i personalitzat amb estètica corporativa CSR.
+       */
+
+
+      // Inicialitza el gràfic
+      var root = am5.Root.new(graphId);
+
+      root.setThemes([
+        am5themes_Animated.new(root)
+      ]);
+
+      var chart = root.container.children.push(am5xy.XYChart.new(root, {
+        panX: true,
+        panY: true,
+        wheelX: "panX",
+        wheelY: "zoomX",
+        pinchZoomX: true,
+        paddingLeft: 0,
+        paddingRight: 1
+      }));
+
+      // Activa el cursor del gràfic
+      var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
+      cursor.lineY.set("visible", false);
+
+
+      // Configura eix X amb noms de secció
+      var xRenderer = am5xy.AxisRendererX.new(root, {
+        minGridDistance: 30,
+        minorGridEnabled: true
+      });
+
+      xRenderer.labels.template.setAll({
+        rotation: -10, 
+        centerY: am5.p0, 
+        centerX: am5.p50,
+        paddingRight: 0,
+        paddingTop: 0,
+        fontSize: 12, 
+        maxWidth: 90, 
+      });
+
+      var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+        maxDeviation: 0.3,
+        categoryField: "section",
+        renderer: xRenderer,
+        tooltip: null
+      }));
+
+      // Configura eix Y amb límit màxim calculat
+      var yRenderer = am5xy.AxisRendererY.new(root, {
+        strokeOpacity: 0.1
+      });
+
+      var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+        maxDeviation: 0.3,
+        renderer: yRenderer,
+        max: ymax
+      }));
+
+      // Tooltip personalitzat per mostrar la puntuació
+      var tooltip = am5.Tooltip.new(root, {
+        labelText: "Puntuació: {label}",
+        getFillFromSprite: false,
+        getLabelFillFromSprite: false
+      });
+
+      tooltip.get("background").setAll({
+        fill: am5.color(0x000000),
+        fillOpacity: 1,
+        strokeOpacity: 0
+      });
+
+      tooltip.label.setAll({
+        fill: am5.color(0xffffff),
+        fontSize: 12
+      });
+
+      tooltip.label.adapters.add("fill", function() {
+        return am5.color(0xffffff);
+      });
+
+      chart.zoomOutButton.set("forceHidden", true);  // Amaga el botó de zoom reset
+
+      // Defineix la sèrie de columnes
+      var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+        name: "Puntuació",
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueYField: "value",
+        categoryXField: "section",
+        tooltip: tooltip
+      }));
+
+      // Estil visual de les columnes
+      series.columns.template.setAll({
+        cornerRadiusTL: 5,
+        cornerRadiusTR: 5,
+        strokeOpacity: 0
+      });
+
+      // Assigna colors personalitzats per columna
+      series.columns.template.adapters.add("fill", function(fill, target) {
+        return target.dataItem.dataContext.color;
+      });
+
+      series.columns.template.adapters.add("stroke", function(stroke, target) {
+        return target.dataItem.dataContext.color;
+      });
+
+      // Carrega les dades
+      xAxis.data.setAll(data);
+      series.data.setAll(data);
+
+      // Apareixen amb animació
+      series.appear(1000);
+      chart.appear(1000, 100);
+
+    }
+
+  });
+
+  // ================================
+  // Botó per mostrar/ocultar detalls
+  // ================================
+  $(document).ready(function() {
+    $("#detail_button_1, #detail_button_2").click(function() {
+      let btn = $(this);
+      let id = btn.attr("id");
+      let btn_num = id.split("_")[2];
+      let info_data = $("#detail_info_" + btn_num);
+
+      if (info_data.is(":visible")) {
+        info_data.hide();
+        btn.text("Veure informació detallada");
+        btn.css("opacity", "1");
+      } else {
+        info_data.fadeIn(500);
+        btn.text("Amagar informació detallada");
+        btn.css("opacity", "0.8");
+      }
+    });
+  });
+
+</script>
+{% endblock javascripts %}

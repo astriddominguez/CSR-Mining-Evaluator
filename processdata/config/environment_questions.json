@@ -1,0 +1,950 @@
+[
+    {
+    "section_name": "Energia",
+    "id": "Energy",
+    "panel_msg": { 
+        "Tècniques energètiques eficients": "text-primary",
+        "Energia renovable instal·lada": "text-success",
+        "Maquinària electrificada": "text-warning"
+    },
+    "questions": [
+            {
+            "question": "Percentatge de les operacions mineres que han implementat les millors tècniques disponibles per reduir el consum energètic (%)",
+            "type": "number_input",
+            "number_type": "float",
+            "min": 0,
+            "max": 100,
+            "to_group": true, 
+            "gclass": "text-primary",
+            "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+            "input_id": "ghg_reduction",
+            "placeholder": "Ex: 50",
+            "popover_title": "Tècniques energètiques eficients",
+            "html_on": "true",
+            "popover_content": "<ul><li>Inclou sistemes d’il·luminació eficients, motors optimitzats, recuperació de calor o automatització.</li><li>Només compta si s’aplica a una part significativa de les operacions mineres.</li></ul>"
+            },
+            {
+            "question": "Percentatge de l'energia utilitzada que prové de fonts renovables (%)",
+            "type": "number_input",
+            "number_type": "float",
+            "min": 0,
+            "max": 100,
+            "to_group": true, 
+            "gclass": "text-success",
+            "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+            "input_id": "green_energy_sources",
+            "placeholder": "Ex: 70",
+            "popover_title": "Energia renovable",
+            "html_on": "true",
+            "popover_content": "<ul><li>Inclou fonts com energia solar, eòlica, hidroelèctrica o biogàs.</li><li>El percentatge ha de referir-se al consum energètic total del projecte.</li></ul>"
+            },
+            {
+            "question": "Percentatge de la flota d'equipament miner que funciona amb energia elèctrica o hidrogen verd (%)",
+            "type": "number_input",
+            "number_type": "float",
+            "min": 0,
+            "max": 100,
+            "to_group": true, 
+            "gclass": "text-warning",
+            "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+            "input_id": "green_energy_fleet",
+            "placeholder": "Ex: 80",
+            "popover_title": "Flota electrificada",
+            "html_on": "true",
+            "popover_content": "<ul><li>Inclou camions, perforadores, excavadores i altres equips que funcionen amb electricitat o hidrogen verd.</li><li>Només es comptabilitzen si utilitzen energia d’origen renovable.</li></ul>"
+            }
+        ]
+    },
+    {
+    "section_name": "Residus de processos",
+    "id": "Tailings",
+    "panel_msg": { 
+        "Recuperabilitat dels minerals en els residus de la mina": "text-primary",
+        "Reutilització dels residus com a material de construcció o farciment": "text-success",
+        "Recuperació d’aigua dels residus de la mina": "text-warning"
+    },
+    "questions": [
+            {
+                "question": "En quina mesura la recuperació dels minerals continguts als residus miners és econòmicament viable?",
+                "type": "select",
+                "input_id": "price_increase",
+                "to_group": true, 
+                "gclass": "text-primary",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "options":[
+                    "8-10 vegades més alt",
+                    "6-8 vegades més alt",
+                    "4-6 vegades més alt",
+                    "2-4 vegades més alt",
+                    "Fins a 2 vegades més alt"
+                ],
+                "popover_title": "Recuperació de minerals",
+                "html_on": "true",
+                "popover_content": "<ul><li>Fa referència a la viabilitat econòmica d'extreure minerals dels residus (tailings).</li><li>Es considera menys viable si cal que el preu de mercat augmenti molt per justificar l'extracció.</li></ul>"
+            },
+            {
+                "question": "Quin percentatge dels residus miners es reutilitza per a materials de construcció o rebliment?",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "input_id": "other_tailing_usage",
+                "to_group": true, 
+                "gclass": "text-success",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "placeholder": "Ex: 60",
+                "popover_title": "Reutilització de residus",
+                "html_on": "true",
+                "popover_content": "<ul><li>Inclou usos com a sorra per a la construcció, ceràmiques o farciment de galeries.</li><li>És important per reduir l’impacte ambiental i aprofitar recursos.</li></ul>"
+            },
+            {
+                "question": "Quin percentatge de l’aigua continguda als residus miners es recupera i es reutilitza?",
+                "type": "number_input",
+                "min": 0,
+                "max": 100,
+                "number_type": "float",
+                "input_id": "water_recovery_from_tailings",
+                "to_group": true, 
+                "gclass": "text-warning",
+                "msg_below": "* Si no disposes de dades per a aquest camp, pots deixar-lo buit.",
+                "placeholder": "Ex: 85"
+            }
+        
+        ]
+    },
+    {
+    "section_name": "Gestió de residus",
+    "id": "Waste",
+    "panel_msg": { 
+        "Excés/Reducció de generació de residus": "text-primary",
+        "Proporció de residus reutilitzats com a farciment o material de construcció": "text-success"
+    },
+    "questions": [
+            {
+                "question": "Quin tipus de mineria s’utilitza en la teva explotació?",
+                "type": "select",
+                "input_id": "waste_ratio_info",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "options":[
+                    "Superficial (Open-pit)",
+                    "Subterrània (Underground)",
+                    "Mixta"
+                ]
+            },
+            {
+                "question": "Quin és el percentatge de residus generats per tona de mineral extret en la teva explotació?",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-primary",
+                "input_id": "waste_ratio_1",
+                "placeholder": "Ex: 60",
+                "popover_title": "Percentatge de residus generats",
+                "html_on": "true",
+                "popover_content": "<ul><li>Correspon al volum de residus generats per cada tona de mineral útil extret.</li><li>Inclou roques estèrils, materials descartats i residus de processament.</li></ul>",
+                "msg_below": "* Si el valor d’aquest camp i el següent coincideixen, no s’aplicarà puntuació."
+            },
+            {
+                "question": "Quin és el percentatge mitjà de residus generats en la indústria per al mateix tipus d’explotació?",
+                "type": "number_input",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-primary",
+                "number_type": "float",
+                "input_id": "waste_ratio_2",
+                "placeholder": "Ex: 80"
+            },
+            {    
+                "question": "S’implementen tècniques avançades per reduir la generació de residus?",
+                "type": "radio", 
+                "input_id": "waste_advanced_techniques"
+            },
+            {
+                "question": "Quines mesures s'apliquen per evitar la contaminació de l'aire, l’aigua i el sòl derivada de la generació de residus miners?",
+                "type": "select",
+                "input_id": "waste_mesures",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "options":[
+                    "Contenció i segellat de residus per evitar filtracions",
+                    "Tractament d'aigües residuals abans d'alliberar-les al medi ambient",
+                    "Control de pols i emissions en transport i emmagatzematge de residus",
+                    "Sistemes de reaprofitament d'aigua en els processos miners",
+                    "Cap mesura concreta"
+                ]
+            },
+            {
+                "question": "Quin percentatge dels residus miners es reutilitza per a materials de construcció, rebliment, fertilitzants o altres aplicacions?",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-success",
+                "input_id": "waste_reuse",
+                "placeholder": "Ex: 50",
+                "popover_title": "Reutilització de residus miners",
+                "html_on": "true",
+                "popover_content": "<ul><li>Inclou usos com agregats per a formigó, rebliment de mines, bases per carreteres, fertilitzants o altres aplicacions industrials.</li><li>No inclou la simple acumulació o emmagatzematge temporal.</li></ul>"
+            },
+            {
+                "question": "Es reutilitzen els residus miners per a algun dels següents usos?",
+                "type": "select",
+                "input_id": "waste_reuse_uses",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "options":[
+                    "Material de construcció (àrids per formigó, fonaments d’infraestructures, etc.)",
+                    "Base granular per a carreteres",
+                    "Fertilitzants o millores del sòl",
+                    "Rebliment de mines tancades",
+                    "Altres usos innovadores",
+                    "No es reutilitzen"
+                ]
+            }
+        ]
+    },
+    {
+    "section_name": "Gestió de l’aigua",
+    "id": "Water",
+    "panel_msg": { 
+        "Variació de la qualitat de l'aigua": "text-primary",
+        "Reutilització de l’aigua": "text-success",
+        "Reducció/Increment del cabal d’aigua": "text-warning"
+    },
+    "questions": [
+            {
+                "question": "Quina era la concentració mitjana de contaminants en l’aigua aigües amunt de la mina abans de l’explotació? (mg/L)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "to_group": true, 
+                "gclass": "text-primary",
+                "input_id": "water_quality_variation_1",
+                "placeholder": "Ex: 20",
+                "msg_below": "* Si el valor d’aquest camp i el següent coincideixen, no s’aplicarà puntuació."
+            },
+            {
+                "question": "Quina és la concentració mitjana de contaminants en l’aigua actualment aigües avall de la mina? (mg/L)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "to_group": true, 
+                "gclass": "text-primary",
+                "input_id": "water_quality_variation_2",
+                "placeholder": "Ex: 120"
+            }, 
+            {
+                "question": "Percentatge de l'aigua utilitzada en el procés miner que es recupera i es reutilitza. (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "to_group": true, 
+                "gclass": "text-success",
+                "input_id": "water_reuse",
+                "placeholder": "Ex: 65",
+                "popover_title": "Aigua reutilitzada",
+                "html_on": "true",
+                "popover_content": "<ul><li>Inclou l’aigua recuperada durant el procés miner que es torna a utilitzar dins la pròpia operació.</li><li>També pot incloure aigües grises si es tracten adequadament.</li></ul>"
+            },
+            {
+                "question": "Quin era el cabal d’aigua natural abans de l’explotació? (L/s)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "to_group": true, 
+                "gclass": "text-warning",
+                "input_id": "waterflow_reduction_1",
+                "placeholder": "Ex: 200",
+                "popover_title": "Cabal natural",
+                "html_on": "true",
+                "popover_content": "<ul><li>Es refereix al cabal mitjà del riu o corrent d’aigua aigües amunt abans de l’inici de l’activitat minera.</li><li>Expressat habitualment en litres per segon (L/s).</li></ul>"
+            },
+            {
+                "question": "Quin és el cabal d’aigua actualment aigües avall de la mina? (L/s)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "to_group": true, 
+                "gclass": "text-warning",
+                "input_id": "waterflow_reduction_2",
+                "placeholder": "Ex: 140"
+            }
+        ]
+    },
+    {
+    "section_name": "Qualitat de l’aire",
+    "id": "Air",
+    "message_for_panel": "Per a cada contaminant, <strong>cal que indiquis els tres valors</strong>: el valor abans de l’explotació, el valor actual aigües avall i el valor límit establert.",
+    "questions": [
+        {
+            "question": "Quina era la concentració de contaminants en l’aire abans de l’explotació?",
+            "indications": "(Indica la concentració mitjana per cada contaminant segons el període de referència aplicable: anual, 24 hores, 1 hora, etc.)",
+            "type": "one-to-many-numbers",
+            "parent_id": "toxics_before_explotation",
+            "childrens": 
+            [
+                {
+                    "label": "PM10",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_1",
+                    "placeholder": "Ex: 18"
+                },
+                {
+                    "label": "PM2.5",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_2",
+                    "placeholder": "Ex: 8"
+                },
+                {
+                    "label": "TSP",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_3",
+                    "placeholder": "Ex: 40"
+                },
+                {
+                    "label": "NO₂",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_4",
+                    "placeholder": "Ex: 12"
+                },
+                {
+                    "label": "SO₂",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_5",
+                    "placeholder": "Ex: 4"
+                },
+                {
+                    "label": "CO₂",
+                    "unit": "mg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_6",
+                    "placeholder": "Ex: 738"
+                },
+                {
+                    "label": "O₃",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_7",
+                    "placeholder": "Ex: 95"
+                },
+                {
+                    "label": "CO",
+                    "unit": "mg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_8",
+                    "placeholder": "Ex: 0.7"
+                },
+                {
+                    "label": "Dioxines",
+                    "unit": "ng/Nm³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_9",
+                    "placeholder": "Ex: 0.03"
+                },
+                {
+                    "label": "Pb",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_10",
+                    "placeholder": "Ex: 0.02"
+                },
+                {
+                    "label": "As",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_11",
+                    "placeholder": "Ex: 1"
+                },
+                {
+                    "label": "Cd",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_12",
+                    "placeholder": "Ex: 0.8"
+                },
+                {
+                    "label": "Ni",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_13",
+                    "placeholder": "Ex: 10"
+                },
+                {
+                    "label": "B(a)P",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_before_explotation_14",
+                    "placeholder": "Ex: 0.3"
+                }
+            ]            
+        },
+        {
+            "question": "Quina és la concentració actual de contaminants en l’aire aigües avall de la mina?",
+            "indications": "(Indica la concentració mitjana per cada contaminant segons el període de referència aplicable: anual, 24 hores, 1 hora, etc.)",
+            "type": "one-to-many-numbers",
+            "parent_id": "toxics_after_explotation",
+            "childrens": 
+            [
+                {
+                    "label": "PM10",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_1",
+                    "placeholder": "Ex: 45"
+                },
+                {
+                    "label": "PM2.5",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_2",
+                    "placeholder": "Ex: 25"
+                },
+                {
+                    "label": "TSP",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_3",
+                    "placeholder": "Ex: 180"
+                },
+                {
+                    "label": "NO₂",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_4",
+                    "placeholder": "Ex: 35"
+                },
+                {
+                    "label": "SO₂",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_5",
+                    "placeholder": "Ex: 18"
+                },
+                {
+                    "label": "CO₂",
+                    "unit": "mg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_6",
+                    "placeholder": "Ex: 846"
+                },
+                {
+                    "label": "O₃",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_7",
+                    "placeholder": "Ex: 110"
+                },
+                {
+                    "label": "CO",
+                    "unit": "mg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_8",
+                    "placeholder": "Ex: 3.5"
+                },
+                {
+                    "label": "Dioxines",
+                    "unit": "ng/Nm³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_9",
+                    "placeholder": "Ex: 0.08"
+                },
+                {
+                    "label": "Pb",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_10",
+                    "placeholder": "Ex: 0.12"
+                },
+                {
+                    "label": "As",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_11",
+                    "placeholder": "Ex: 4"
+                },
+                {
+                    "label": "Cd",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_12",
+                    "placeholder": "Ex: 3"
+                },
+                {
+                    "label": "Ni",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_13",
+                    "placeholder": "Ex: 18"
+                },
+                {
+                    "label": "B(a)P",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "toxics_after_explotation_14",
+                    "placeholder": "Ex: 0.9"
+                }
+            ]            
+        },
+        {
+            "question": "Quins són els límits màxims establerts per normativa o política interna per a cada contaminant?",
+            "indications": "(Indica el límit de referència segons el període aplicable: anual, 24 h, 1 h, etc.)",
+            "type": "one-to-many-numbers",
+            "parent_id": "limit",
+            "childrens": 
+            [
+                {
+                    "label": "PM10",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_1",
+                    "placeholder": "Ex: 50"
+                },
+                {
+                    "label": "PM2.5",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_2",
+                    "placeholder": "Ex: 25"
+                },
+                {
+                    "label": "TSP",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_3",
+                    "placeholder": "Ex: 150"
+                },
+                {
+                    "label": "NO₂",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_4",
+                    "placeholder": "Ex: 40"
+                },
+                {
+                    "label": "SO₂",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_5",
+                    "placeholder": "Ex: 125"
+                },
+                {
+                    "label": "CO₂",
+                    "unit": "mg/m³",
+                    "min": 0,
+                    "input_id": "limit_6",
+                    "placeholder": "Ex: 810"
+                },
+                {
+                    "label": "O₃",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_7",
+                    "placeholder": "Ex: 120"
+                },
+                {
+                    "label": "CO",
+                    "unit": "mg/m³",
+                    "min": 0,
+                    "input_id": "limit_8",
+                    "placeholder": "Ex: 10"
+                },
+                {
+                    "label": "Dioxines",
+                    "unit": "ng/Nm³",
+                    "min": 0,
+                    "input_id": "limit_9",
+                    "placeholder": "Ex: 0.1"
+                },
+                {
+                    "label": "Pb",
+                    "unit": "µg/m³",
+                    "min": 0,
+                    "input_id": "limit_10",
+                    "placeholder": "Ex: 0.5"
+                },
+                {
+                    "label": "As",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "limit_11",
+                    "placeholder": "Ex: 6"
+                },
+                {
+                    "label": "Cd",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "limit_12",
+                    "placeholder": "Ex: 5"
+                },
+                {
+                    "label": "Ni",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "limit_13",
+                    "placeholder": "Ex: 20"
+                },
+                {
+                    "label": "B(a)P",
+                    "unit": "ng/m³",
+                    "min": 0,
+                    "input_id": "limit_14",
+                    "placeholder": "Ex: 1"
+                }
+            ]            
+        }
+        ]
+    },
+    {
+    "section_name": "Canvis en la morfologia del terreny",
+    "id": "LandformChanges",
+    "questions": [
+            {
+                "question": "Quin percentatge de l'àrea total del projecte ha estat alterada en la seva morfologia?",
+                "type": "number_input",
+                "number_type": "float",
+                "msg_below": "* Amb un percentatge del 0%, no hi ha impacte sobre la morfologia i no s'aplica valoració.",
+                "min": 0,
+                "max": 100,
+                "input_id": "area_alterada",
+                "placeholder": "Ex: 60",
+                "popover_title": "Què es considera una alteració morfològica?",
+                "html_on": "true",
+                "popover_content": "<ul><li>Qualsevol canvi rellevant en la forma natural del terreny a causa d’excavacions, abocaments, plataformes, etc.</li><li>Inclou construccions, infraestructures, terrils o modificacions topogràfiques visibles.</li></ul>"
+            },
+            {
+                "question": "Quin tipus de modificacions s’han fet?",
+                "type": "multiple-select",
+                "input_id": "modifications_type",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "options": [
+                    {
+                        "id": "default_3",
+                        "name": ""
+                    },
+                    {
+                        "id": "scavages", 
+                        "name": "excavacions (retirada de material)"
+                    },
+                    {
+                        "id": "fillers", 
+                        "name": "farciments (apilament o ompliment de terres o roques)"
+                    },
+                    {
+                        "id": "platforms", 
+                        "name": "creació de plataformes o terrasses"
+                    },
+                    {
+                        "id": "mountain_cuts",
+                        "name":"talls de muntanya o talussos"
+                    },
+                    {
+                        "id": "landfills",
+                        "name": "abocadors de residus o terrils"
+                    }
+                ]
+            },
+            {    
+                "question": "La modificació del terreny es recupera després del tancament o s'aconsegueix una forma equivalent?",
+                "type": "radio", 
+                "input_id": "reversible_modification"
+            },
+            {    
+                "question": "S’han implementat mesures de restauració per recuperar la topografia original o mitigar l’impacte?",
+                "type": "radio", 
+                "input_id": "restauration_mesures"
+            },
+            {
+                "question": "Existeix un pla de rehabilitació per restablir la topografia i la coberta vegetal després de la fase d’explotació?",
+                "type": "radio", 
+                "input_id": "rehab_plan"
+            },
+            {
+                "question": "Quina és la previsió de temps perquè el terreny recuperi la seva funcionalitat ecològica? (X anys)",
+                "type": "number_input",
+                "number_type": "int",
+                "min": 0,
+                "input_id": "recovery_time",
+                "msg_below": "* Camp opcional. Només cal omplir-lo si tens informació específica.",
+                "placeholder": "Ex: 10"
+            }
+        ]
+    },
+    {
+    "section_name": "Biodiversitat i ecosistemes",
+    "id": "Biodiversity",
+    "questions": [
+            {
+                "question": "Quin percentatge de la biodiversitat s’ha vist afectada per l’activitat minera?",
+                "type": "number_input",
+                "number_type": "float",
+                "msg_below": "* Amb un percentatge del 0%, no hi ha impacte sobre la biodiversitat i no s'aplica valoració.",
+                "min": 0,
+                "max": 100,
+                "input_id": "biodiversity_affected",
+                "placeholder": "Ex: 20",
+                "popover_title": "Què s’entén per biodiversitat afectada?",
+                "html_on": "true",
+                "popover_content": "<ul><li>Inclou la pèrdua o degradació d’espècies vegetals i animals, hàbitats naturals i processos ecològics a causa de l’activitat minera.</li><li>Es pot mesurar per l’àrea o pel nombre d’espècies afectades, si es disposa de dades.</li></ul>"
+            },
+            {    
+                "question": "L’àrea afectada forma part d’un espai natural protegit o amb algun grau de protecció legal?",
+                "type": "radio", 
+                "input_id": "protected_habitat"
+            },
+            {    
+                "question": " S’han fragmentat hàbitats naturals a causa de la construcció de carreteres o altres infraestructures lineals?",
+                "type": "radio", 
+                "input_id": "fragmented_habitat"
+            },
+            {
+                "question": "S’han vist afectats ecosistemes aquàtics com rius, aiguamolls o aqüífers per l’activitat minera?",
+                "type": "radio", 
+                "input_id": "water_ecosistems"
+            },
+            {    
+                "question": "Hi ha presència d’espècies amenaçades o en perill dins l’àrea afectada pel projecte?",
+                "type": "radio", 
+                "input_id": "endangered_species"
+            },
+            {    
+                "question": "S’ha perdut hàbitat crític per a espècies clau durant el projecte?",
+                "type": "radio", 
+                "input_id": "critic_habitat"
+            },
+            {
+                "question": "Existeix un pla de restauració ambiental estandarditzat, auditable i aprovat per l’administració competent?",
+                "type": "radio",
+                "input_id": "estandarized_plan"
+            },
+            {
+                "question": "S’ha recuperat completament la biodiversitat afectada després de la restauració del projecte miner?",
+                "type": "radio",
+                "input_id": "complete_recovery"
+            }
+        ]
+    },
+    {
+    "section_name": "Subsidència",
+    "id": "Subsidence",
+    "questions": [
+            {
+                "question": "S’ha detectat subsidència a la zona minera?",
+                "type": "radio",
+                "input_id": "subsidence_detected",
+                "popover_title": "Què és la subsidència?",
+                "html_on": "true",
+                "popover_content": "<ul><li>És l’enfonsament lent o sobtat del terreny a causa de buits subterranis generats per activitats mineres.</li><li>Pot provocar esquerdes, col·lapses o afectacions a infraestructures i aqüífers.</li></ul>",
+                "msg_below": "* Tingues en compte que, si no es detecta subsidència, no apareixerà reflectida en la puntuació."
+            },
+            {
+                "question": "La subsidència afecta carreteres, edificis o altres infraestructures?",
+                "type": "radio",
+                "input_id": "sub_affected_infrastructures",
+                "dependency": {
+                    "depends_on": "subsidence_detected",
+                    "is_on": "false-subsidence_detected",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "S'han registrat esquerdes, desplaçaments o col·lapses en estructures?",
+                "type": "radio",
+                "input_id": "sub_collapses_detected",
+                "dependency": {
+                    "depends_on": "subsidence_detected",
+                    "is_on": "false-subsidence_detected",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "La subsidència ha afectat el nivell freàtic o la qualitat de l’aigua subterrània?",
+                "type": "radio",
+                "input_id": "sub_affected_water_quality",
+                "dependency": {
+                    "depends_on": "subsidence_detected",
+                    "is_on": "false-subsidence_detected",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Ha causat alteracions en rius, llacs o aiguamolls propers?",
+                "type": "radio",
+                "input_id": "sub_alterations_in_rivers",
+                "dependency": {
+                    "depends_on": "subsidence_detected",
+                    "is_on": "false-subsidence_detected",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "L’impacte de la subsidència és compatible amb l’ús actual del sòl?",
+                "type": "radio",
+                "input_id": "sub_compatible_impact", 
+                "dependency": {
+                    "depends_on": "subsidence_detected",
+                    "is_on": "false-subsidence_detected",
+                    "behaviour": "hide"
+                }
+            },
+            {
+                "question": "Hi ha risc de col·lapse en zones urbanitzades o agrícoles?",
+                "type": "radio",
+                "input_id": "sub_risk_of_collapse", 
+                "dependency": {
+                    "depends_on": "subsidence_detected",
+                    "is_on": "false-subsidence_detected",
+                    "behaviour": "hide"
+                }
+            }
+        ]
+    },
+    {
+    "section_name": "Efectes ambientals positius",
+    "id": "PositiveEnvironmental",
+    "questions": [
+            {
+                "question": "S’ha observat una millora en la qualitat del sòl com a conseqüència de l’activitat minera?",
+                "type": "radio",
+                "input_id": "env_soil_quality_improved"
+            },
+            {
+                "question": "L’activitat minera ha contribuït a la descontaminació o regeneració d’aigües subterrànies o superficials?",
+                "type": "radio",
+                "input_id": "env_water_regeneration"
+            },
+            {
+                "question": "S’han dut a terme projectes de reforestació a gran escala a la zona afectada?",
+                "type": "radio",
+                "input_id": "env_reforestation_projects"
+            },
+            {
+                "question": "S’han introduït espècies vegetals natives per restaurar l’ecosistema?",
+                "type": "radio",
+                "input_id": "env_native_species_restoration"
+            },
+            {
+                "question": "Quin percentatge de la superfície afectada s’ha restaurat amb èxit? (%)",
+                "type": "number_input",
+                "number_type": "float",
+                "min": 0,
+                "max": 100,
+                "input_id": "env_restored_area_percentage",
+                "placeholder": "Ex: 80",
+                "msg_below": "* Amb un percentatge de 0%, no s’aplicarà cap puntuació."
+            },
+            {
+                "question": "Hi ha hagut un augment en la biodiversitat local gràcies a l’activitat minera?",
+                "type": "radio",
+                "input_id": "env_biodiversity_increase"
+            },
+            {
+                "question": "S’han creat nous hàbitats que afavoreixen la fauna silvestre?",
+                "type": "radio",
+                "input_id": "env_habitat_creation"
+            }
+        ]
+    },
+    {
+    "section_name": "Passius ambientals",
+    "id": "EnvironmentalLiabilities",
+    "panel_msg": { 
+        "Extensió dels passius ambientals": "text-primary",
+        "Impacte dels passius ambientals": "text-success"
+    },
+    "questions": [
+        {
+            "question": "Quin percentatge de l'àrea total afectada per la mina està ocupada per passius ambientals com tailings, residus miners o àrees degradades?",
+            "type": "number_input",
+            "number_type": "float",
+            "min": 0,
+            "max": 100,
+            "to_group": true, 
+            "gclass": "text-primary",
+            "input_id": "extension_1",
+            "placeholder": "Ex: 90",
+            "msg_below": "* Amb un percentatge de 0%, no s’aplicarà cap puntuació."
+        },
+        {
+            "question": "Els passius ambientals han provocat algun canvi significatiu en la qualitat del sòl, l’aigua o l’aire?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "impact_1",
+            "popover_title": "Què són els passius ambientals?",
+            "html_on": "true",
+            "popover_content": "<ul><li>Zones degradades que mantenen un risc ambiental a llarg termini (com tailings, residus miners o sòls contaminats).</li><li>Inclouen els espais afectats que requereixen control, restauració o seguiment un cop acabada l’activitat minera.</li></ul>"
+        },
+        {
+            "question": "L’impacte generat és difícil de revertir, fins i tot amb accions correctives?",
+            "type": "radio",
+            "input_id": "impact_2",
+            "to_group": true, 
+            "gclass": "text-success"
+        },
+        {
+            "question": "Quina quantitat de diners es requereix aproximadament per restaurar l’impacte ambiental?",
+            "type": "select",
+            "input_id": "impact_3",
+            "to_group": true, 
+            "gclass": "text-success",
+            "options":[
+                "Baix",
+                "Moderat",
+                "Alt", 
+                "Molt alt",
+                "No restaurable"
+            ]
+        },
+        {
+            "question": "Aquest impacte afecta la vida quotidiana de les comunitats properes?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "impact_4"
+        },
+        {
+            "question": "L’afectació d’aquests passius té repercussions a nivell nacional o internacional?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "impact_5"
+        },
+        {
+            "question": "Existeix un pla de gestió per a la restauració de les zones afectades?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "management_1"
+        },
+        {
+            "question": "S’han implementat tecnologies per reduir o neutralitzar l’impacte dels tailings i altres residus?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "management_2"
+        },
+        {
+            "question": "Hi ha fons econòmics o garanties per a la rehabilitació ambiental després del tancament de la mina?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "management_3"
+        },
+        {
+            "question": "S’està fent seguiment i control periòdic dels passius ambientals?",
+            "type": "radio",
+            "to_group": true, 
+            "gclass": "text-success",
+            "input_id": "management_4"
+        }
+        ]
+    }
+]

@@ -1,0 +1,18 @@
+<div class="mb-3" id="question-{{parent_id}}">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="form-label fs-4">
+      {{ question }}
+    </div>
+  </div>
+  <div class="row ms-lg-4">
+    <p class="text-muted fs-5">{{indications}}</p>
+    {% for c in childrens %}
+    <div class="col-6 col-lg-2">
+      <label class="fs-5 fw-bold mb-1" for="{{ c.input_id }}">{{ c.label }} ({{c.unit}}):</label>
+      <input type="number" class="form-control fs-5" id="{{ c.input_id }}" name="{{ c.input_id }}" placeholder="{{ c.placeholder }}" min="{{ c.min }}" oninput="validateLimit(this)" required>
+      <div id="{{c.input_id}}-alert" class="invalid-feedback fs-6 fw-bold"></div>
+      <br><br>
+    </div>
+    {% endfor %}
+  </div>
+</div>

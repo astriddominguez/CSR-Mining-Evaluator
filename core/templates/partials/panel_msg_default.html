@@ -1,0 +1,9 @@
+<div class="p-3 mb-3 rounded card-info-panel">
+  <p class="text-muted fs-5 text-justify">
+    {% if message %}
+    {{ message | safe }}
+    {% else %}
+    Perquè es pugui realitzar el càlcul, cal introduir <strong>totes les dades sol·licitades</strong>. Només es poden deixar buits els camps on s’indiqui explícitament que no són obligatoris.
+    {% endif %}
+  </p>
+</div>

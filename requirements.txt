@@ -1,0 +1,9 @@
+asgiref==3.8.1
+Django==5.2.2
+gunicorn==21.2.0
+python-dateutil==2.9.0.post0
+python-decouple==3.8
+Unipath==1.1
+whitenoise==6.6.0
+requests==2.31.0
+django-extensions==3.2.3

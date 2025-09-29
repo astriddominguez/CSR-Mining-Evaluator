@@ -1,0 +1,81 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+{% block title %}Tutorial d’Ús – Càlcul de l’Índex CSR{% endblock title %}
+
+{% block content %}
+
+<section class="section container mb-5">
+  <h2 class="mb-4">Com funciona el formulari?</h2>
+
+  <ol class="fs-4 ps-5" style="list-style: none;">
+    <li class="mb-4">
+      <h3 class="fw-bold">1. Introdueix les dades generals del projecte</h3>
+      <div>
+        El formulari comença amb una pantalla on cal omplir les <b>dades bàsiques</b> (nom del projecte, fase, localització, etc.).
+        <b>Tots els camps són obligatoris</b>, i ajuden a generar un informe més complet i contextualitzat.
+      </div>
+      <div class="mt-3 text-center">
+        <img src="{% static 'assets/img/overview.png' %}" class="img-fluid rounded shadow  w-100 w-md-75 w-lg-50" alt="Pantalla principal">
+      </div>
+    </li>
+
+    <li class="mb-4">
+      <h3 class="fw-bold">2. Navega per les diferents dimensions</h3>
+      <div>
+        Un cop completada la primera pantalla, podràs accedir a les seccions temàtiques de cada dimensió utilitzant els
+        <b>botons “Següent”</b> i <b>“Anterior”</b>, que trobaràs a la part inferior de cada pàgina.
+      </div>
+    </li>
+
+    <li class="mb-4">
+      <h3 class="fw-bold">3. Decideix quines seccions vols valorar</h3>
+      <div>
+        No cal completar totes les seccions. Pots saltar aquelles que no t’interessin.
+        <br><b>Però atenció:</b> si vols obtenir una puntuació per una secció concreta, has de <b>respondre totes les preguntes obligatòries</b> d’aquella secció.
+      </div>
+      <div class="mt-3 text-center">
+        <img src="{% static 'assets/img/seccio.png' %}" class="img-fluid rounded shadow  w-100 w-md-75 w-lg-50" alt="Omplerta del formulari">
+      </div>
+    </li>
+
+    <li class="mb-4">
+      <h3 class="fw-bold">4. Tingues en compte els missatges d’instrucció</h3>
+      <div>
+        A cada secció poden aparèixer <b>indicacions específiques</b>.
+        Si una secció no apareix als resultats finals, probablement és perquè no s’han omplert tots els camps obligatoris.
+      </div>
+    </li>
+
+    <li class="mb-4">
+      <h3 class="fw-bold">5. Finalitza el formulari</h3>
+      <div>
+        Quan arribis a l’última secció de la <b>dimensió ambiental</b>, veuràs el botó <b>“Finalitzar”</b>.
+        En fer clic, es calcularà l’índex i accediràs automàticament a la vista de resultats.
+      </div>
+    </li>
+
+    <li class="mb-4">
+      <h3 class="fw-bold">6. Consulta els resultats</h3>
+      <div class="fs-4 mb-2">
+        A la <b>vista de resultats</b> trobaràs:
+      </div>
+      <ul class="fs-4 ps-5">
+        <li>La <b>puntuació global i normalitzada</b> del projecte</li>
+        <li>Les <b>dades generals</b> introduïdes</li>
+        <li>Un <b>gràfic per a cada dimensió</b> amb la seva puntuació</li>
+        <li>I un botó desplegable per <b>consultar els detalls</b> de cada secció valorada</li>
+      </ul>
+      <div class="mt-3 text-center">
+        <img src="{% static 'assets/img/grafica.png' %}" class="img-fluid rounded shadow  w-100 w-md-75 w-lg-50" alt="Gràfica de resultats">
+      </div>
+      <div class="mt-3 text-center">
+        <img src="{% static 'assets/img/seccio_resultat.png' %}" class="img-fluid rounded shadow  w-100 w-md-75 w-lg-50" alt="Detall de resultats">
+      </div>
+    </li>
+  </ol>
+</section>
+
+
+{% endblock content %}

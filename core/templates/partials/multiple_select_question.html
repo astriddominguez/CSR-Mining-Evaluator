@@ -1,0 +1,15 @@
+<div class="mb-3" id="question-{{select_id}}" {% if dependency and dependency != 'false' %} data-depends-on="{{ dependency.depends_on }}" data-is-on="{{ dependency.is_on }}" data-behaviour="{{ dependency.behaviour }}" {% endif %}>
+  <label for="{{ select_id }}" class="form-label fs-4">{{ question }}</label>
+  <div class="row ms-lg-4">
+    <div class="col">
+      <select class="form-select" id="{{ select_id }}" data-placeholder="{{ placeholder }}" multiple>
+        {% for option in options|slice:"1:" %}
+        <option value="{{ option.id }}">{{ option.name }}</option>
+        {% endfor %}
+      </select>
+      {% if msg_below %}
+      <p class="text-muted">{{ msg_below }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>

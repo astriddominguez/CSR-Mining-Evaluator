@@ -1,0 +1,986 @@
+{% extends 'layouts/base.html' %}
+
+{% block stylesheets %}
+<!-- animacions lottie -->
+<script src="https://unpkg.com/lottie-web@5.7.6/build/player/lottie.min.js"></script>
+<!-- Leaflet CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://tiles.locationiq.com/v3/libs/leaflet-geocoder/1.9.6/leaflet-geocoder-locationiq.min.css">
+<!-- Select2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+<style>
+
+  :root {
+    --border-radius-accordion: 20px;
+  }
+
+  /*
+  ==============
+  Estil del mapa
+  ============== 
+  */
+  #map {
+    width: 50vw;
+    height: 50vh;
+  }
+
+  /*
+  ==============================
+  Estil dels pasos del formulari
+  ==============================
+  */
+  .form-step {
+    display: none;
+    /*Oculta els pasos del formulari*/
+  }
+
+  .form-step p {
+    text-align: justify;
+    /*Justifica el text del paràgraf*/
+  }
+
+  .form-step.active {
+    display: block;
+    /*Visibilitza els pasos actius del formulari*/
+  }
+
+  /*
+  ===========================================
+  Estil del panell informatiu de la 'tarjeta'
+  =========================================== 
+  */
+
+  .card-info-panel {
+    background-color: #f8f9fa;
+    border-left: 4px solid #db8d34;
+  }
+
+  /* 
+  Personalització dels botons d'acordió de Bootstrap 5.
+  Es fa servir !important per sobreescriure estils per defecte de la llibreria.
+
+  Basat en solucions i exemples de:
+    - https://stackoverflow.com/questions/66626152/how-do-i-change-the-default-bootstrap-accordion-button 
+    - Documentació oficial de Bootstrap: https://getbootstrap.com/docs/5.3/components/accordion/
+  */
+
+  .accordion-button {
+    background-color: #343A40 !important;
+    color: white !important;
+    border-radius: var(--border-radius-accordion) !important;
+    margin-bottom: 15px !important;
+    padding: 14px 20px !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .accordion-button:not(.collapsed) {
+    background-color: #212529 !important;
+    color: white !important;
+    border-radius: var(--border-radius-accordion) !important;
+  }
+
+  .accordion-button::after {
+    filter: brightness(100);
+  }
+
+  .accordion-button:focus {
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  .accordion-item {
+    border: none !important;
+    border-radius: var(--border-radius-accordion) !important;
+    overflow: hidden;
+  }
+
+  .accordion-button:hover {
+    background-color: #495057 !important;
+  }
+
+  .accordion-body {
+    padding: 20px !important;
+  }
+
+  /*
+    Estils personalitzats per a botons d'informació que obren popovers.
+    Ús previst:
+    - Aquests botons s'utilitzen com a triggers de popovers Bootstrap 
+      per mostrar informació contextual en formularis o preguntes.
+  */
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+  }
+
+  .info-button {
+    background-color: #db8d34 !important;
+  }
+
+  /*
+  Estils personalitzats del popover de Bootstrap 5.
+  S'han modificat colors, ombres i fletxes per adaptar-se a l'estètica del projecte.
+
+  Referència: Documentació oficial de Bootstrap (v5.3)
+  https://getbootstrap.com/docs/5.3/components/popovers/
+  */
+  .popover {
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .popover-header {
+    background-color: #343a40;
+    color: white;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .popover-body {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .bs-popover-auto[data-popper-placement^=right]>.popover-arrow::before {
+    border-right-color: #ced4da !important;
+  }
+
+  .bs-popover-auto[data-popper-placement^=left]>.popover-arrow::before {
+    border-left-color: #ced4da !important;
+  }
+
+  .bs-popover-auto[data-popper-placement^=top]>.popover-arrow::before {
+    border-top-color: #ced4da !important;
+  }
+
+  .bs-popover-auto[data-popper-placement^=bottom]>.popover-arrow::before {
+    border-bottom-color: #ced4da !important;
+  }
+
+  /*
+  Select2 + Bootstrap 5
+
+  Aquest bloc personalitza la mida de lletra dels components de Select2 
+  per integrar-los visualment amb l'estil tipogràfic de Bootstrap 5.
+
+  Es treballa sobre el tema oficial `select2-bootstrap-5-theme`.
+
+  Referència de Select2 Bootstrap 5 Theme:
+  https://github.com/apalfrey/select2-bootstrap-5-theme
+  */
+
+  /* Aplica fs-5 al Select2 quan està tancat */
+  .select2-container--bootstrap-5 .select2-selection {
+    font-size: 1.25rem !important;
+    /* Equivalent a fs-5 */
+  }
+
+  /* Aplicar fs-5 al menú desplegable de Select2 */
+  .select2-container--bootstrap-5 .select2-results__option {
+    font-size: 1.25rem !important;
+    /* Equivalent a fs-5 */
+  }
+
+  /* Aplica mida lleugerament inferior a les etiquetes seleccionades (multi-select) */
+  .select2-container--bootstrap-5 .select2-selection__choice {
+    font-size: 1.1rem !important;
+  }
+
+  /* 
+  Sobreescriptura necessària dels estils per defecte de Select2.
+  El camp de cerca tenia un ample de 0px ocultant el placeholder assignat.
+  S'ha afegit !important per garantir que prevalgui sobre la llibreria original.
+  */
+
+  .select2-search__field {
+    width: 100% !important;
+    min-width: 200px !important;
+    max-width: none !important;
+  }
+
+</style>
+
+{% endblock stylesheets %}
+
+{% block title %}
+Índex Miner de Responsabilitat Social Corporativa
+{% endblock title %}
+
+{% block content %}
+<!-- Formulario d'Avaluació -->
+<section id="avaluacio" class="container my-5">
+  <!-- Loader de carga -->
+  <div id="loader" class="loading" style="display: none;">
+    <div id="lottie-miner" style="width: 200px; height: 200px;"></div>
+    <div class="mt-4 fs-5 fw-bold">Recuperant les dades del projecte miner<span id="dots">...</span>⛏️</div>
+  </div>
+  <form id="CSR-Form" name="csr_form" class="mb-4">
+    <!-- Step 0 -->
+    <div class="form-step active" id="overview-card">
+      <h2 class="text-left fw-bold mb-4">Explica’ns una mica sobre el teu projecte...</h2>
+
+      {% for q in overview_questions %}
+      {% if q.type == "text_input" %}
+      {% include "partials/text_input_question.html" with id=q.input_id label=q.question placeholder=q.placeholder required=q.required %}
+      {% elif q.type == "select" %}
+      {% include "partials/single_select_question.html" with select_id=q.input_id question=q.question placeholder=q.placeholder options=q.options required=q.required %}
+      {% endif %}
+      {% endfor %}
+
+
+      <!-- Ubicació de la mina -->
+      <div class="mb-3">
+        <label for="address" class="form-label fs-4">On està ubicada la mina? <span class="text-danger">*</span> </label>
+        <!-- Mapa -->
+        <div class="row ms-lg-4">
+          <div class="col">
+            <div id="map" class="mt-3 mx-auto d-block w-100 w-md-75 w-lg-50"></div>
+          </div>
+          <p class="text-muted small" style="margin-top: 0.5rem;">
+            ℹ️ Algunes adreces poden aparèixer al llistat però no ser reconegudes correctament pel sistema de localització. 
+            Si et trobes amb un error, torna a seleccionar o simplifica l’adreça. També pots provar d’indicar una ubicació propera a la teva.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Step 1 -->
+    <div class="form-step">
+      <div class="card shadow-sm mb-4" id="socioeconomic-card">
+        <div class="card-header mb-2">
+          <h2 class="fw-bold">Dimensió Socioeconòmica</h2>
+        </div>
+        <div class="card-body">
+          <!-- Texto explicatiu -->
+          <div class="p-3 mb-5 rounded card-info-panel">
+            <p class="text-muted fs-4 text-justify">
+              Avalua l’impacte de l’activitat minera en el desenvolupament econòmic local, la creació d’ocupació, la transparència i la implicació amb la comunitat.
+              Inclou aspectes com la contractació local, la inversió en infraestructures, el respecte als drets laborals i la governança responsable.
+              L’objectiu és maximitzar els beneficis socials i econòmics minimitzant els impactes negatius.
+            </p>
+          </div>
+
+          {% for section in socio_economic_questions %}
+          <div class="accordion" id="accordion{{ section.id }}">
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="heading{{ section.id }}">
+                <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ section.id }}" aria-expanded="false" aria-controls="collapse{{ section.id }}">
+                  {{ section.section_name }}
+                </button>
+              </h3>
+              <div id="collapse{{ section.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ section.id }}" data-bs-parent="#accordion{{ section.id }}">
+                <div class="accordion-body">
+                  {% if section.panel_msg %}
+                  {% include "partials/panel_msg.html" with panel_msg=section.panel_msg %}
+                  {% else %}
+                  {% include "partials/panel_msg_default.html" %}
+                  {% endif %}
+
+                  {% for q in section.questions %}
+                  {% if q.type == "number_input" %}
+                  {% include "partials/number_input_question.html" with question=q.question input_id=q.input_id number_type=q.number_type placeholder=q.placeholder popover_title=q.popover_title html_on=q.html_on popover_content=q.popover_content dependency=q.dependency min=q.min max=q.max msg_below=q.msg_below to_group=q.to_group gclass=q.gclass%}
+                  {% elif q.type == "radio" %}
+                  {% include "partials/radio_question.html" with question=q.question input_name=q.input_id dependency=q.dependency popover_title=q.popover_title html_on=q.html_on popover_content=q.popover_content msg_below=q.msg_below %}
+                  {% elif q.type == "select" %}
+                  {% include "partials/single_select_question.html" with question=q.question select_id=q.input_id placeholder="Selecciona una opció" options=q.options dependency=q.dependency msg_below=q.msg_below to_group=q.to_group gclass=q.gclass popover_title=q.popover_title html_on=q.html_on popover_content=q.popover_content%}
+                  {% elif q.type == "multiple-select" %}
+                  {% include "partials/multiple_select_question.html" with question=q.question select_id=q.input_id placeholder="Selecciona una o més opcions" options=q.options dependency=q.dependency msg_below=q.msg_below%}
+                  {% endif %}
+                  {% endfor %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-step">
+      <div class="card shadow-sm mb-4" id="environment-card">
+        <div class="card-header mb-2">
+          <h2 class="fw-bold">Dimensió Ambiental</h2>
+        </div>
+        <div class="card-body">
+          <!-- Texto explicatiu -->
+          <div class="p-3 mb-5 rounded card-info-panel">
+            <p class="text-muted fs-4 text-justify">
+              Avalua l’impacte ambiental de l’activitat minera en termes de gestió dels recursos naturals, emissions, residus i biodiversitat.
+              Inclou aspectes com la reducció de la petjada de carboni, l’ús d’energia renovable, la gestió dels residus miners, la protecció de l’aigua i la restauració dels ecosistemes afectats.
+              L’objectiu és promoure una explotació sostenible que minimitzi els impactes negatius i fomenti la conservació del medi ambient.
+            </p>
+          </div>
+
+          <!-- Accordion para Contractació Local -->
+
+          {% for section in environment_questions %}
+          <div class="accordion" id="accordion{{ section.id }}">
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="heading{{ section.id }}">
+                <button class="accordion-button collapsed fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ section.id }}" aria-expanded="false" aria-controls="collapse{{ section.id }}">
+                  {{ section.section_name }}
+                </button>
+              </h3>
+              <div id="collapse{{ section.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ section.id }}" data-bs-parent="#accordion{{ section.id }}">
+                <div class="accordion-body">
+                  {% if section.panel_msg %}
+                  {% include "partials/panel_msg.html" with panel_msg=section.panel_msg %}
+                  {% else %}
+                  {% include "partials/panel_msg_default.html" with message=section.message_for_panel %}
+                  {% endif %}
+                  {% for q in section.questions %}
+                  {% if q.type == "number_input" %}
+                  {% include "partials/number_input_question.html" with question=q.question input_id=q.input_id number_type=q.number_type placeholder=q.placeholder popover_title=q.popover_title html_on=q.html_on popover_content=q.popover_content min=q.min max=q.max to_group=q.to_group gclass=q.gclass msg_below=q.msg_below  dependency=q.dependency%}
+                  {% elif q.type == "radio" %}
+                  {% include "partials/radio_question.html" with question=q.question input_name=q.input_id to_group=q.to_group gclass=q.gclass popover_title=q.popover_title html_on=q.html_on popover_content=q.popover_content dependency=q.dependency msg_below=q.msg_below %}
+                  {% elif q.type == "select" %}
+                  {% include "partials/single_select_question.html" with question=q.question select_id=q.input_id placeholder="Selecciona una opció" options=q.options to_group=q.to_group gclass=q.gclass msg_below=q.msg_below popover_title=q.popover_title html_on=q.html_on popover_content=q.popover_content dependency=q.dependency%}
+                  {% elif q.type == "multiple-select" %}
+                  {% include "partials/multiple_select_question.html" with question=q.question select_id=q.input_id options=q.options  placeholder="Selecciona una o més opcions" msg_below=q.msg_below  dependency=q.dependency%}
+                  {% elif q.type == "one-to-many-numbers" %}
+                  {% include "partials/one_to_many_number_question.html" with parent_id=q.parent_id question=q.question indications=q.indications childrens=q.childrens %}
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div id="buttons" class="d-flex justify-content-end mt-4">
+      <button type="button" class="btn btn-dark btn-lg shadow prev-step fw-bold d-none"><i class="fas fa-arrow-left me-3"></i>Anterior</button>
+      <button type="button" class="btn btn-dark btn-lg shadow next-step fw-bold">Següent<i class="fas fa-arrow-right ms-3"></i> </button>
+      <button id="end-form" type="button" class="btn btn-dark btn-lg shadow fw-bold d-none">Finalitzar</button>
+    </div>
+  </form>
+
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <p class="mb-0">&copy; 2025 CSR Mineria - Tots els drets reservats</p>
+</footer>
+
+{% endblock content %}
+
+{% block javascripts %}
+<!-- leaflet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
+<script src="https://tiles.locationiq.com/v3/js/liq-styles-ctrl-leaflet.js?v=0.1.8"></script>
+<script src="https://tiles.locationiq.com/v3/libs/leaflet-geocoder/1.9.6/leaflet-geocoder-locationiq.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-plugins/3.0.2/control/Permalink.js"></script>
+<!-- jsSHA -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha256.min.js"></script>
+<!-- Select 2 -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+{% load static %}
+<!-- user_data_manager.js: realitza peticions fetch al servidor. -->
+<script  src="{% static 'assets/js/user_data_manager.js' %}"></script>
+<!-- helpers.js: funcions auxiliars -->
+<script  src="{% static 'assets/js/helpers.js' %}"></script>
+
+{{ LastStep | json_script:"last-step" }}
+{{ fingerprintId | json_script:"fingerprint-id" }}
+
+<script>
+
+  // ======================================
+  // Animació del loader del miner (Lottie)
+  // ======================================
+
+  // Registra l'hora d'inici del loader 
+  loaderStartTime = Date.now(); 
+
+  // Inicialitza una animació Lottie en bucle, renderitzada com SVG
+  // Mostra un miner en moviment durant el temps de càrrega de la pàgina inicial.
+  const minerAnimation = lottie.loadAnimation({
+    container: $('#lottie-miner')[0],
+    renderer: 'svg',
+    loop: true,  // L'animació es repeteix indefinidament
+    autoplay: true,  // S'inicia automàticament en carregar
+    path: "{% static 'assets/animations/minner.json' %}"
+  });
+
+
+  $(document).ready(function() {
+    // Obté el CSRF Token del servidor i el guarda com a cookie
+    fetchAndSetCsrfToken();
+  });
+
+
+  /*
+  ===================================
+  Inicialització de variables globals
+  ===================================
+  */
+
+  // 1. Formulari:
+  // -------------
+  // Variable per emmagatzemar les dades del formulari.
+  // Si l'usuari ja havia omplert el formulari anteriorment, aquí es podrien carregar les seves respostes desades.
+  let formData = ""; 
+  // Variable per controlar el pas actual del formulari (formulari pas a pas).
+  // Inicialitzem a 0 perquè comenci pel primer pas.
+  let currentStep = 0; 
+
+  // 2. Fingerprint:
+  // ---------------
+  // Identificador únic del visitant obtingut mitjançant una tècnica de fingerprinting. 
+  // Aquest valor s’utilitza per identificar l’usuari sense necessitat de login.
+  let fingerprintId = ""; 
+  // Indica si aquest fingerprint ja existia prèviament a la base de dades o sistema de seguiment.
+  // Si és true, vol dir que l’usuari ja havia interactuat anteriorment.
+  let fingerprint_exists = false; 
+
+  // 3. Mapa:
+  // --------
+  // Variable que contindrà la instància del mapa (de Leaflet).
+  // Es fa servir per mostrar el mapa interactiu i gestionar marcadors, cerques, etc.
+  let map; 
+  // Indica si l’usuari ha seleccionat una adreça concreta sobre el mapa.
+  // És útil per controlar si ja s’ha fet una selecció abans de continuar amb el formulari.
+  let selectedAddress = false; 
+
+  // 4. Loader:
+  // ----------
+  // ID retornat per setInterval() per controlar el temporitzador del loader (animació Miner).
+  // Es fa servir per poder aturar-lo més tard amb clearInterval(loaderIntervalId).
+  let loaderIntervalId; 
+
+  /*
+  ================================================================================
+  Obtenció del Fingerprint de l'usuari i carrega de dades del formulari (si en té)
+  ================================================================================ 
+  */
+
+  // Abans: 'https://openfpcdn.io/fingerprintjs/v4', s'ha modificat per temes de incopatibilitat amb Firefox.
+  const fpPromise = import('https://esm.sh/@fingerprintjs/fingerprintjs@4')
+    .then(FingerprintJS => FingerprintJS.load())
+
+  // Inicialment obtenim el ID del visitant
+  fpPromise
+    .then(fp => fp.get())
+    .then(result => {
+      // Si fingerprintId ja té un identificador assignat, vol dir que venim de la pestanya resultats.
+      // Si és el cas, carregarem les dades associades al fingerprint inicial.
+      if (fingerprintId ?.length === 0) {
+        fingerprintId = hashFingerprintSync(result.visitorId);
+      }
+
+      // Fa la petició al servidor, si el identificador es trobava registrat retorna els camps entrats anteriorment per l'usuari.
+      check_fingerprint(fingerprintId).then(data => {
+        fingerprint_exists = data.registered; 
+        
+        if (fingerprint_exists) {
+          // Recuperació dels valors entrats al formulari. 
+          formData = data.form; 
+
+          // Loader que apareix únicament durant la càrrega de dades en el primer pas (0) del formulari.
+          if (currentStep == 0) { 
+            
+            // Miner
+            $('#loader').show();
+
+            // Efecte de punts suspensius
+            loaderIntervalId = setInterval(() => {
+              const dots = $("#dots")[0];
+              // Si el text té 3 punts o més, el buida; Si té menys de 3 punts li afegeix un punt.
+              dots.innerText = dots.innerText.length >= 3 ? '' : dots.innerText + '.';
+            }, 250); // Executa la funció cada 250 ms.
+
+            // Registra moment d'inici del Loader.
+            const loaderStartTime = Date.now();
+
+            // Incorpora les dades del formulari.
+            load_overview(formData.overview);
+            load_socioeconomic(formData.socioeconomic_dimension);
+            load_environment(formData.environment_dimension);
+
+          } else { 
+            // Incorpora les dades en ordre invers ja que es prové de la pàgina resultats.
+            load_environment(formData.environment_dimension);
+            load_socioeconomic(formData.socioeconomic_dimension);
+            load_overview(formData.overview);
+          }
+
+          // Aplica la lògica de dependències entre preguntes del formulari.
+          // Això fa que es mostrin o s’amaguin determinades preguntes segons la resposta donada en altres camps.
+          apply_dependencies();
+        }
+      });
+    });
+
+  /* 
+  =========================================
+  Inicialització del mapa i geolocalització
+  =========================================
+  */
+
+  $(document).ready(function() {
+    // Clau pública d'accés a l'API de LocationIQ per al mapa i geocodificació.
+    var key = 'pk.5a3669da63ea712e21c0a62e6eabe756';
+
+    // Capa base del mapa amb l'estil "streets" proporcionat per LocationIQ.
+    var streets = L.tileLayer.Unwired({
+      key: key,
+      scheme: "streets"
+    });
+
+    // Creació i configuració inicial del mapa Leaflet.
+    // Centrat a Barcelona (lat: 41.3879, lon: 2.16992), amb zoom inicial 13.
+    map = L.map('map', {
+      center: [41.3879, 2.16992], 
+      zoom: 13,
+      scrollWheelZoom: true, // Permet fer zoom amb la roda del ratolí
+      layers: [streets], // Carrega la capa base 'streets'
+      zoomControl: false  // No mostra els controls de zoom per defecte
+    });
+
+    // Afegim un control de geocodificació al mapa per cercar ubicacions.
+    var geocoder = L.control.geocoder(key, {
+      url: "https://api.locationiq.com/v1",
+      expanded: true, // El cercador apareix obert per defecte
+      placeholder: "Cerca una ubicació...",
+      panToPoint: true, // Centra el mapa automàticament en la selecció
+      focus: true, // Fa focus al camp de cerca
+      position: "topleft" // Posició del cercador al mapa
+    }).addTo(map);
+
+    // Quan l’usuari selecciona una ubicació del cercador:
+    geocoder.on('select', function(event) {
+      selectedAddress = true;
+      var latlng = event.latlng; // Coordenades de la ubicació seleccionada
+      map.setView(latlng, 24);  // Centra el mapa i fa zoom a la ubicació
+    });
+
+    // Customització del cercador visual: afegim ID i classes Bootstrap
+    let searchInput = $(".leaflet-locationiq-input");
+    if (searchInput.length) {
+      // S'assigna l'ID 'address' al cercador + aplica estils visuals.
+      searchInput.attr("id", "address").addClass("fs-6 form-control");
+    }
+
+    // Si l’usuari comença a escriure, es reseteja l'estat `selectedAddress`
+    searchInput.on("input", function() {
+      selectedAddress = false;
+    });
+
+  });
+
+  /*
+  =============================================================================
+  Funcions auxiliars per fer la conversió de coordenades a adreça i a l'inversa 
+  =============================================================================
+  */
+
+  /**
+   * Obté les coordenades (latitud i longitud) a partir d'una adreça textual.
+   * 
+   * Utilitza el servei de geocodificació de Nominatim (OpenStreetMap).
+   * 
+   * @param {string} address - L’adreça en format text a cercar.
+   * @returns {Promise<Object[]>} Una promesa que resol amb un array d’objectes amb lat/lon si té èxit.
+   *                              Si hi ha error, es mostra a consola i es rebutja la promesa.
+   */
+
+  function getCoordinatesFromAddress(address) {
+    return fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
+      .then(response => {
+        if (!response.ok) throw new Error("Error en la petició");
+        return response.json();
+      })
+      .catch(error => console.error("Error obtenint les coordenades:", error));
+  }
+
+  /**
+   * Obté l’adreça textual a partir de coordenades geogràfiques (latitud i longitud).
+   * 
+   * Utilitza el servei de reverse geocoding de Nominatim (OpenStreetMap).
+   * 
+   * @param {number|string} lat - Latitud de la ubicació.
+   * @param {number|string} lng - Longitud de la ubicació.
+   * @returns {Promise<Object>} Una promesa que resol amb un objecte que conté `display_name` i altres detalls de l’adreça.
+   *                            Si hi ha error, es mostra a consola i es rebutja la promesa.
+   */
+
+  function getAddressFromCoordinates(lat, lng) {
+    return fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+      .then(response => {
+        if (!response.ok) throw new Error("Error en la petició");
+        return response.json();
+      })
+      .catch(error => console.error("Error obtenint l’adreça:", error));
+  }
+
+  /*
+  ==============================
+  Lògica del formulari per pasos
+  ==============================
+  */
+
+  // Selecciona tots els blocs de pas del formulari. 
+  const $steps = $(".form-step");
+  // Botons: 'Següent' i 'Anterior'
+  const $nextBtns = $(".next-step");
+  const $prevBtns = $(".prev-step");
+  
+  // Indica si a l'iniciar s'ha de mostrar l'últim pas (Dimensió Ambiental). Cas: es prové de la pàgina de resultats.
+  const lastStep = JSON.parse($('#last-step').text()); 
+  if (lastStep == 'true') { 
+    // Es conserva ID provinent de la vista resultats. 
+    fingerprintId = JSON.parse($('#fingerprint-id').text());
+    // S'actualitza pas del formulari. 
+    $(".form-step").eq(currentStep).removeClass("active");
+    currentStep = 2; 
+    update_buttons(currentStep);
+    $(".form-step").eq(currentStep).addClass("active");
+  }
+
+  // Flags que indiquen si el pas ha estat actualitzat.
+  var socioeconomic_has_been_updated = false;
+  var environment_has_been_updated = false; 
+  var overview_has_been_updated = false;
+
+  // Quan l'usuari pren el botó següent:
+  $(".next-step").on("click", async function() {
+    if (currentStep === 0) { 
+      // Dades generals del projecte
+      let project_name = $("#project_name").val();
+      let company_name = $("#company_name").val();
+      let phase = $("#phase").val();
+      let addressInput = $("#address").val(); 
+
+      if (!selectedAddress) { // L'Adreça ha d'estar seleccionada correctament.
+        alert("Si us plau, comprova que l'adreça ha estat seleccionada correctament.");
+        return;
+      }
+
+      // Validació de camps, no poden estar buits.
+      if (!project_name || !company_name || !phase || !addressInput) {
+        alert("Si us plau, completa tots els camps obligatoris.");
+        return;
+      }
+
+      // Obtenció de coordenades a partir de l'adreça.
+      getCoordinatesFromAddress(addressInput).then(data => {
+        if (data.length > 0) {
+          // Latitud
+          let lat = parseFloat(data[0].lat);
+          // Longitud
+          let lon = parseFloat(data[0].lon);
+          // Estructura de respostes a enviar al servidor.
+          let responses = {
+            fingerprint: fingerprintId,
+            project_name: project_name,
+            company_name: company_name,
+            mine_ubication: {
+              longitude: lon,
+              latitude: lat
+            },
+            phase: phase
+          };
+
+          if (!fingerprint_exists) { // Cas 1: L'usuari no es troba registrat.
+            // Registra l'ID del visitant i emmagatzema els valors introduïts.
+            // Nota: no cal revisar flag 'overview_has_been_updates', ja que és la primera vegada que el visitant omple els camps.
+            save_fingerprint(fingerprintId).then(data => {
+              update_overview(responses);
+            });
+          } else { // Cas 2: L'ID del visitant ja es trobava registrat.
+            // Nota: revisa que hagi actualitzat els camps, si no és el cas no realitzem cap petició d'actualització.
+            if (overview_has_been_updated == true){
+              update_overview(responses);
+              overview_has_been_updated = false;
+            }
+          }
+        } else { // Cas excepcional on no es pot obtenir les coordenades a partir de l'adreça. 
+            alert("No s'han pogut obtenir coordenades per a l'adreça introduïda.\nEs recarregarà la pàgina perquè ho puguis tornar a intentar.");
+            location.reload();
+        }
+      });
+
+    } else if (currentStep === 1) { 
+      // Dimensió socioeconomica. 
+      if (socioeconomic_has_been_updated == true) {
+        if ($('#socioeconomic-card .is-invalid').length > 0) {
+          alert("Hi ha errors en el formulari. Si us plau, revisa els camps marcats en vermell.");
+          return;
+        }
+        update_socioeconomic_dimension({
+          fingerprint: fingerprintId,
+          ...collect_all_card_responses("socioeconomic-card")
+        });
+        socioeconomic_has_been_updated == false;
+      }
+    }
+
+    // Si hi ha algun popover obert, el tenca.
+    hideAllPopovers();
+    // Pas actual deixa d'estar visible.
+    $(".form-step").eq(currentStep).removeClass("active");
+    // Actualitza número del pas del formulari.
+    currentStep++; 
+    // Actualitza la visibilitat i ubicació dels botons. (Anterior, Següent i/o Finalitzar)
+    update_buttons(currentStep);
+    // Visibilitza el següent pas del formulari.
+    $(".form-step").eq(currentStep).addClass("active");
+
+  });
+
+  // Quan l'usuari pren el botó 'Anterior':
+  $(".prev-step").on("click", function() {
+    if (currentStep === 1) { 
+      // Dimensió Socioeconòmica
+      if (socioeconomic_has_been_updated == true) {
+        if ($('#socioeconomic-card .is-invalid').length > 0) {
+          alert("Hi ha errors en el formulari. Si us plau, revisa els camps marcats en vermell.");
+          return;
+        }
+        update_socioeconomic_dimension({
+          fingerprint: fingerprintId,
+          ...collect_all_card_responses("socioeconomic-card")
+        });
+        socioeconomic_has_been_updated == false;
+      }
+    } else if (currentStep == 2) { 
+      // Dimensió Ambiental
+      if (environment_has_been_updated == true) {
+        if ($('#environment-card .is-invalid').length > 0) {
+          alert("Hi ha errors en el formulari. Si us plau, revisa els camps marcats en vermell.");
+          return;
+        }
+        update_environment_dimension({
+          fingerprint: fingerprintId,
+          ...collect_all_card_responses("environment-card")
+        });
+        environment_has_been_updated = false; 
+      }
+    }
+
+    // Actualització del nou pas del formulari.
+    hideAllPopovers(); 
+    $(".form-step").eq(currentStep).removeClass("active"); 
+    currentStep--;
+    update_buttons(currentStep); 
+    $(".form-step").eq(currentStep).addClass("active"); 
+
+    // Quan es retrocedeix desde pas 1 a pas 0, cal redibuixar mapa per a que es pugui veure correctament.
+    if (currentStep === 0 && map) { 
+      setTimeout(() => map.invalidateSize(), 300); // temps de retard per assegurar que el div sigui visible
+    }
+    
+  });
+
+  // Quan l'usuari pren al botó 'Finalitzar':
+  $("#end-form").on("click", function() {
+    if ($('#environment-card .is-invalid').length > 0) {
+      alert("Hi ha errors en el formulari. Si us plau, revisa els camps marcats en vermell.");
+      return;
+    }
+    update_environment_dimension({
+      fingerprint: fingerprintId,
+      ...collect_all_card_responses("environment-card")
+    }).then(() => { 
+      // redirecció a la vista resultats
+      window.location.href = "{% url 'results' %}" + "?fingerprintId=" + encodeURIComponent(fingerprintId);
+    }).catch(error => {
+      alert("Hi ha hagut un error en desar les dades. Torna-ho a provar.");
+      return;
+    });
+
+  });
+
+  /* 
+   ==================
+   Bootstrap Popovers
+   ==================
+
+   Documentació: https://getbootstrap.com/docs/5.0/components/popovers/ 
+  */
+
+  // Inicialitza tots els popovers de Bootstrap per a elements amb l'atribut 'data-bs-toggle="popover"'.
+  // Aquestes boletes es mostren quan l’usuari fa clic sobre icones informatives.
+  // Es desactiva l'animació per fer-ho més ràpid.
+  let popoverList = $('[data-bs-toggle="popover"]').map(function() { 
+    return new bootstrap.Popover(this, {
+      animation: false 
+    });
+  }).get(); // Converteix el NodeList jQuery en un array JavaScript normal
+
+  // Tanca automàticament tots els popovers dins d’un acordeó quan aquest s’amaga.
+  // Això evita que quedin popovers oberts en seccions plegades del formulari.
+  $(".accordion-collapse").on("hidden.bs.collapse", function() { 
+    $(this).find('[data-bs-toggle="popover"]').each(function() {
+      let bsPopover = bootstrap.Popover.getInstance(this); 
+      if (bsPopover) {
+        bsPopover.hide(); 
+      }
+    });
+  });
+
+  /* 
+   =========================================================
+   Inicialització del plugin Select2 amb el tema Bootstrap 5
+   =========================================================
+
+   - Documentació: https://apalfrey.github.io/select2-bootstrap-5-theme/examples/multiple-select/
+  */
+  $(document).ready(function() {
+    $('#infrastructure-type, #affected-activities, #modifications_type').select2({
+      theme: "bootstrap-5",
+      width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+      placeholder: $(this).attr('data-placeholder'), // Placeholder personalitzat des de l’atribut HTML
+      closeOnSelect: false,  // Permet seleccionar múltiples opcions sense tancar el desplegable
+    });
+
+  });
+
+
+  /* 
+  ============================================================================================
+  Actualització de 'Flags' que indiquen si l'usuari ha modificat camps en passos del formulari
+  ============================================================================================
+  */
+  $(document).ready(function() { 
+    $("#overview-card").on("input change", "input, select, textarea", function() {
+      overview_has_been_updated = true;
+    });
+    $("#socioeconomic-card").on("input change", "input, select, textarea", function() {
+      socioeconomic_has_been_updated = true;
+    });
+    $("#environment-card").on("input change", "input, select, textarea", function() {
+      environment_has_been_updated = true;
+    });
+  });
+
+  // ==============================================
+  // Funcions que carreguen les dades del formulari
+  // ==============================================
+
+  /**
+   * Reincorpora al formulari les dades generals del projecte.
+   * 
+   * @param {Object} overviewData - Objecte amb les dades generals (nom, empresa, ubicació...).
+   * 
+   * - Assigna els valors als inputs corresponents segons el seu `id`.
+   * - Si la clau és `mine_ubication`, configura el mapa i el marcador.
+   * - També s'encarrega d'ocultar el loader Lottie si estem en el pas 0.
+   */
+  function load_overview(overviewData) {
+    Object.entries(overviewData).forEach(([key, value]) => {
+      if (key != 'mine_ubication') {
+        // Inserta el valor al camp identificat pel mateix ID
+        $(`#${key}`).val(value); 
+      } else {
+        
+        // Centra el mapa i afegeix un marcador si hi ha coordenades
+        if (map) {
+          map.setView([value.latitude, value.longitude], 13); 
+        }
+
+        // Obté l'adreça en text a partir de les coordenades
+        getAddressFromCoordinates(value.latitude, value.longitude).then(data => {
+          $("#address").val(data.display_name); 
+
+          // Crea i mostra un marcador al mapa
+          marker = L.marker([value.latitude, value.longitude]) 
+            .addTo(map)
+            .bindPopup(data.display_name)
+            .openPopup();
+
+          // Amaga el loader si estem al pas 0, garantint un temps mínim visible
+          if (currentStep == 0) { 
+            const elapsed = Date.now() - loaderStartTime; 
+            const MIN_DISPLAY_TIME = 800; // ms
+            if (elapsed >= MIN_DISPLAY_TIME) { // Ja ha passat el temps mínim 
+              $('#loader').fadeOut('slow', () => {
+                clearInterval(loaderIntervalId);
+              });
+            } else {
+              setTimeout(() => { // Encara no ha passat prou temps, continuem
+                $('#loader').fadeOut('slow', () => {
+                  clearInterval(loaderIntervalId);
+                });
+              }, MIN_DISPLAY_TIME - elapsed);
+            }
+          }
+        });
+        selectedAddress = true; // Marca que l’adreça s’ha establert correctament
+      }
+    });
+  }
+
+  /**
+   * Reincorpora les dades de la dimensió socioeconòmica al formulari.
+   *
+   * @param {Object} socioeconomicData - Objecte amb les respostes de l’usuari per aquesta dimensió.
+   *
+   * - Marca els radio buttons correctes per preguntes Sí/No.
+   * - Assigna valors a selects i inputs numèrics.
+   * - Gestiona selects múltiples com `infrastructure-type` i `affected-activities`.
+   */
+  function load_socioeconomic(socioeconomicData) {
+    Object.entries(socioeconomicData).forEach(([key, value]) => {
+      if (typeof value === 'boolean') { 
+        const radioId = value ? `true-${key}` : `false-${key}`;
+        $(`#${radioId}`).prop("checked", true); 
+      } else {
+        if (key == "infrastructure-type" || key == "affected-activities") { 
+          if (value !== null) {
+            insert_in_multiple_selector(value, `#${key}`);
+          }
+        } else { 
+          $(`#${key}`).val(value);
+        }
+      }
+
+    });
+  }
+
+  /**
+   * Reincorpora les dades de la dimensió ambiental al formulari.
+   *
+   * @param {Object} environmentData - Objecte amb les respostes de l’usuari per aquesta dimensió.
+   *
+   * - Marca els radio buttons correctes per preguntes Sí/No.
+   * - Assigna valors a selects i inputs numèrics.
+   * - Gestiona el select múltiple `modifications_type`.
+   */
+
+  function load_environment(environmentData) {
+    Object.entries(environmentData).forEach(([key, value]) => {
+      if (typeof value === 'boolean') { 
+        const radioId = value ? `true-${key}` : `false-${key}`;
+        $(`#${radioId}`).prop("checked", true); 
+      } else {
+        if (key == "modifications_type") { 
+          if (value !== null) { 
+            insert_in_multiple_selector(value, `#${key}`);
+          }
+        } else {
+          $(`#${key}`).val(value); 
+        }
+      }
+    });
+  }
+
+</script>
+{% endblock javascripts %}
