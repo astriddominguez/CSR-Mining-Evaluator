@@ -1,8 +1,8 @@
 #!/usr/bin/expect -f
 
 # Canvia les credencials per les teves propies !!
-set username "astrid"
-set email "dominguezcastellanoastrid@gmail.com"
+set username "usuari"
+set email "email"
 set password "1234"
 
 puts "Iniciant migracions de Django..."
